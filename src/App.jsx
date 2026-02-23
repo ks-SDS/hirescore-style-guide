@@ -446,18 +446,16 @@ function App() {
             {/* LOADER */}
             {active === 'Loader' && (
               <>
-              <WIPBanner />
                 <Text>Loaders should always be <Text component="span" c="blue" fw={700}>HireScore blue</Text>.</Text>
-                <SimpleGrid cols={2}>
-                  <Stack align="center" style={{ border: '2px solid var(--mantine-color-teal-6)', borderRadius: 8, padding: 16 }}>
-                    <Text>Use the Bars variant when loading/populating a table.</Text>
-                    <Loader type="bars" />
-                  </Stack>
-                  <Stack align="center" style={{ border: '2px solid var(--mantine-color-teal-6)', borderRadius: 8, padding: 16 }}>
-                    <Text>Use the Oval variant everywhere else.</Text>
-                    <Loader type="oval" />
-                  </Stack>
-                </SimpleGrid>
+                <Text>Use the Bars variant when loading/populating a table. Use the Oval variant everywhere else.</Text>
+                <ExampleSection cols={2}>
+                  <Example type="do" caption="For loading tables">
+                    <Loader type="bars"></Loader>
+                  </Example>
+                  <Example type="do" caption="For loading everything that isn't a table">
+                    <Loader type="oval"></Loader>
+                  </Example>
+                </ExampleSection>
               </>
             )}
             {active === 'Action Icon' && (
