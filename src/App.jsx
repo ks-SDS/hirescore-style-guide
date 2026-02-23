@@ -274,7 +274,6 @@ function App() {
             {/* BUTTONS */}
             {active === 'Buttons' && (
               <Stack gap="lg">
-              <WIPBanner />
               <Accordion multiple defaultValue={['when-to-use', 'variants', 'labels', 'sections']}>
                 <Accordion.Item value="when-to-use">
                   <Accordion.Control><Title order={3}>When to Use a Button vs a Link</Title></Accordion.Control>
@@ -294,7 +293,8 @@ function App() {
                         </Table.Tbody>
                       </Table>
                       <Space h="xl"/>
-                      <Text>A button semantically represents actions that modify the application state or launch an event.</Text>
+                      <Text>A button represents actions that modify the application state or launch an event.</Text>
+                      <Text>Buttons should allow the user to <Text component="span" fs="italic">do something</Text>  as opposed to <Text component="span" fs="italic">go somewhere.</Text></Text>
                       <ExampleSection cols={2}>
                         <Example type="do" caption="Yes! Saves data — modifies application state">
                           <Button variant="filled" color="teal">Save Assessment</Button>
@@ -303,8 +303,6 @@ function App() {
                           <Button variant="filled">Analytics</Button>
                         </Example>
                       </ExampleSection>
-                      <Space h="xl"/>
-                      <Text>Buttons should allow the user to do something as opposed to go somewhere.</Text>
                       <ExampleSection cols={2}>
                         <Example type="do" caption="Yes! Does something (deletes a module)">
                           <Button variant="filled" color="red" leftSection={<IconTrash size={20}/>}>Delete Module</Button>
@@ -322,16 +320,29 @@ function App() {
                   <Accordion.Panel>
                     <Stack gap="sm">
                       <Text>By default, all buttons should use the filled variant.</Text>
-                      <SimpleGrid cols={4} spacing="sm">
-                        {['filled', 'light', 'outline', 'subtle', 'transparent', 'white', 'default'].map((variant) => (
-                          <div key={variant} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            <Button variant={variant}>Button</Button>
-                            <Text size="xs" c="dimmed" mt={4}>{variant}</Text>
-                          </div>
-                        ))}
-                      </SimpleGrid>
+                      <Text>The outline, subtle, transparent, and "default" variants should not be used.</Text>
+                      <ExampleSection cols={6}>
+                        <Example type="do" caption="Use me!">
+                          <Button variant="filled">Filled</Button>
+                        </Example>
+                        <Example type="do"caption="And sometimes me!">
+                          <Button variant="light" >Light</Button>
+                        </Example>
+                        <Example type="dont" caption="Don't use this variant">
+                          <Button variant="outline">Outline</Button>
+                        </Example>
+                        <Example type="dont" caption="Don't use this variant">
+                          <Button variant="subtle">Subtle</Button>
+                        </Example>
+                        <Example type="dont" caption="Don't use this variant">
+                          <Button variant="transparent">Transparent</Button>
+                        </Example>
+                        <Example type="dont" caption="Don't use this variant">
+                          <Button variant="default">Default</Button>
+                        </Example>
+                      </ExampleSection>
                       <Space h="xl"/>
-                      <Text>If there are multiple buttons on-screen that use the same color, items lower on the action hierarchy may be differentiated by using the light variant.</Text>
+                      <Text>If there are multiple buttons on-screen that use the same <Text component="span" c="blue" style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setActive('Colors')}>color</Text>, items lower on the action hierarchy may be differentiated by using the light variant.</Text>
                       <ExampleSection cols={2}>
                         <Example type="do" caption="Yes! Buttons use the filled variant">
                           <div style={{ display: 'flex', gap: 8 }}>
@@ -362,16 +373,6 @@ function App() {
                             <Button variant="filled" color="blue">Add Answer</Button>
                             <Button variant="filled" color="blue">Add Logic</Button>
                           </div>
-                        </Example>
-                      </ExampleSection>
-                      <Space h="xl"/>
-                      <Text>See the Colors section for guidance on choosing colors.</Text>
-                      <ExampleSection cols={2}>
-                        <Example type="do" caption="Yes! Teal signals successful completion">
-                          <Button variant="filled" color="teal">Save</Button>
-                        </Example>
-                        <Example type="dont" caption="No! Pink has no semantic meaning for this action">
-                          <Button variant="filled" color="pink">Save</Button>
                         </Example>
                       </ExampleSection>
                     </Stack>
@@ -407,7 +408,7 @@ function App() {
                   <Accordion.Control><Title order={3}>Sections</Title></Accordion.Control>
                   <Accordion.Panel>
                     <Stack gap="sm">
-                      <Text>Illustrative icons (images that depict objects or concepts) should go in the leftSection</Text>
+                      <Text>Illustrative <Text component="span" c="blue" style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setActive('Icons')}>icons</Text> (images that depict objects or concepts) should go in the leftSection</Text>
                       <ExampleSection cols={2}>
                         <Example type="do" caption="Yes! Icon in the leftSection">
                           <Button leftSection={<IconFilter size={20}/>} variant="filled">Filters</Button>
