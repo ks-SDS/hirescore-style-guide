@@ -18,11 +18,81 @@ const colorData = [
 ]
 
 const swatchData = [
-  { name: 'blue', description: 'Blue does not carry a specific semantic meaning and it should not be used in situations where a semantic color is more appropriate. Use HireScore blue as the dominant color for primary actions, active/selected states, and important information.' },
-  { name: 'teal', description: 'Use teal to signal the successful completion of a processes- eg, save buttons and confirmation messages. Teal can also indicate "good" metrics such as high test scores.' },
-  { name: 'orange', description: 'Use orange for situations where the user should use caution, such as reversibly destructive actions (clearing/resetting scores, etc) or when a minor error has occurred. ' },
-  { name: 'red', description: 'Use red for critical warnings- eg, to confirm irreversibly destructive actions or to tell the user about a major error. Red can also indicate "bad" metrics such as failing test scores.' },
-  { name: 'gray', description: 'Use gray for user actions like canceling or backing out of a process. Use gray on interactible elements to indicate that they are disabled or unavailable. Other than these two cases, gray is neutral and should be used for most text and formatting elements (borders, etc).'}
+  {
+    name: 'blue',
+    description: (
+      <>
+        <Text>Blue does not carry a specific semantic meaning and it should not be used in situations where a semantic color is more appropriate.</Text>
+        <Text>Use HireScore blue as the dominant color for primary actions, active/selected states, and important information.</Text>
+      </>
+    ),
+    examples: (
+      <ExampleSection cols={2}>
+        <Example type="do" caption="Yes! Placeholder correct usage">
+          <Button variant="filled" color="blue">Add Filter</Button>
+        </Example>
+        <Example type="dont" caption="No! Placeholder incorrect usage">
+          <Button variant="filled" color="blue">Save Assessment</Button>
+        </Example>
+      </ExampleSection>
+    ),
+  },
+  {
+    name: 'teal',
+    description: 'Use teal to signal the successful completion of a processes- eg, save buttons and confirmation messages. Teal can also indicate "good" metrics such as high test scores.',
+    examples: (
+      <ExampleSection cols={2}>
+        <Example type="do" caption="Yes! Placeholder correct usage">
+          <Button variant="filled" color="teal">Save Assessment</Button>
+        </Example>
+        <Example type="dont" caption="No! Placeholder incorrect usage">
+          <Button variant="filled" color="teal">Analytics</Button>
+        </Example>
+      </ExampleSection>
+    ),
+  },
+  {
+    name: 'orange',
+    description: 'Use orange for situations where the user should use caution, such as reversibly destructive actions (clearing/resetting scores, etc) or when a minor error has occurred.',
+    examples: (
+      <ExampleSection cols={2}>
+        <Example type="do" caption="Yes! Placeholder correct usage">
+          <Button variant="filled" color="orange">Clear Scores</Button>
+        </Example>
+        <Example type="dont" caption="No! Placeholder incorrect usage">
+          <Button variant="filled" color="orange">Save Assessment</Button>
+        </Example>
+      </ExampleSection>
+    ),
+  },
+  {
+    name: 'red',
+    description: 'Use red for critical warnings- eg, to confirm irreversibly destructive actions or to tell the user about a major error. Red can also indicate "bad" metrics such as failing test scores.',
+    examples: (
+      <ExampleSection cols={2}>
+        <Example type="do" caption="Yes! Placeholder correct usage">
+          <Button variant="filled" color="red" leftSection={<IconTrash size={16} />}>Delete Module</Button>
+        </Example>
+        <Example type="dont" caption="No! Placeholder incorrect usage">
+          <Button variant="filled" color="red">Clear Scores</Button>
+        </Example>
+      </ExampleSection>
+    ),
+  },
+  {
+    name: 'gray',
+    description: 'Use gray for user actions like canceling or backing out of a process. Use gray on interactible elements to indicate that they are disabled or unavailable. Other than these two cases, gray is neutral and should be used for most text and formatting elements (borders, etc).',
+    examples: (
+      <ExampleSection cols={2}>
+        <Example type="do" caption="Yes! Placeholder correct usage">
+          <Button variant="filled" color="gray">Cancel</Button>
+        </Example>
+        <Example type="dont" caption="No! Placeholder incorrect usage">
+          <Button variant="filled" color="gray">Save Assessment</Button>
+        </Example>
+      </ExampleSection>
+    ),
+  },
 ]
 
 const otherColorData = [
@@ -40,18 +110,28 @@ const iconData = [
   { icon: <IconFilter size={40} />, name: 'filter', useCase: 'Table filter settings' },
 ]
 
-function ExamplePair({ doContent, doCaption, dontContent, dontCaption }) {
+function ExampleSection({ cols = 2, children }) {
   return (
-    <SimpleGrid cols={2} spacing="sm">
-      <Stack align="center" style={{ border: '2px solid var(--mantine-color-teal-6)', borderRadius: 8, padding: 16 }}>
-        {doContent}
-        <Text size="sm" c="dimmed" mt={4} ta="center">{doCaption}</Text>
-      </Stack>
-      <Stack align="center" style={{ border: '2px solid var(--mantine-color-red-6)', borderRadius: 8, padding: 16 }}>
-        {dontContent}
-        <Text size="sm" c="dimmed" mt={4} ta="center">{dontCaption}</Text>
-      </Stack>
+    <SimpleGrid cols={cols} spacing="sm">
+      {children}
     </SimpleGrid>
+  )
+}
+
+function Example({ type, caption, children }) {
+  const isDo = type === 'do'
+  return (
+    <Stack
+      align="center"
+      style={{
+        border: `1px solid var(--mantine-color-${isDo ? 'teal' : 'red'}-6)`,
+        borderRadius: 5,
+        padding: 16,
+      }}
+    >
+      {children}
+      {caption && <Text size="sm" c="dimmed" mt={4} ta="center">{caption}</Text>}
+    </Stack>
   )
 }
 
@@ -105,7 +185,7 @@ function App() {
         <Container size="md" py={40}>
           <Stack gap="xl">
             <Title order={1}>{active}</Title>
-            {/* Colors */}
+            {/* COLORS */}
             {active === 'Colors' && (
               <Stack gap="lg">
                 <Table withBorder striped highlightOnHover>
@@ -128,53 +208,51 @@ function App() {
                     ))}
                   </Table.Tbody>
                 </Table>
-                {swatchData.map(({ name, description }) => (
-                  <div key={name}>
-                    <Text fw={500} mb={4} tt="capitalize">{name}</Text>
-                    <Text size="md" mb="xs">{description}</Text>
-                    <SimpleGrid cols={10} spacing="xs">
-                      {Array.from({ length: 10 }, (_, i) => (
-                        <Stack key={i} gap={4} align="center">
-                          <ColorSwatch color={`var(--mantine-color-${name}-${i})`} size={50} radius="sm" />
-                          <Text size="md" c="dimmed">{i}</Text>
+                <Accordion multiple defaultValue={['blue', 'teal', 'orange', 'red', 'gray', 'other-colors']}>
+                  {swatchData.map(({ name, description, examples }) => (
+                    <Accordion.Item key={name} value={name}>
+                      <Accordion.Control><Title order={3} tt="capitalize" c={name}>{name}</Title></Accordion.Control>
+                      <Accordion.Panel>
+                        <Stack gap="sm">
+                          {description}
+                          {examples}
                         </Stack>
-                      ))}
-                    </SimpleGrid>
-                  </div>
-                ))}
-                <div>
-                  <Title order={3} mt="md" mb={4}>Other Colors</Title>
-                  <Text size="md" mb="lg">These colors have no semantic meaning and should not be used for status indicators or actions. They are available for decorative purposes only, such as color-coding custom tags or labels.</Text>
-                  {otherColorData.map((name) => (
-                    <div key={name} mb="md">
-                      <Text fw={500} mb={4} tt="capitalize">{name}</Text>
-                      <SimpleGrid cols={10} spacing="xs" mb="sm">
-                        {Array.from({ length: 10 }, (_, i) => (
-                          <Stack key={i} gap={4} align="center">
-                            <ColorSwatch color={`var(--mantine-color-${name}-${i})`} size={50} radius="sm" />
-                            <Text size="md" c="dimmed">{i}</Text>
-                          </Stack>
-                        ))}
-                      </SimpleGrid>
-                    </div>
+                      </Accordion.Panel>
+                    </Accordion.Item>
                   ))}
-                </div>
-                <div>
-                  <Title order={3} mt="md" mb={4}>Do's and Don'ts</Title>
-                  <SimpleGrid cols={2} spacing="md">
-                    <div style={{ border: '2px solid var(--mantine-color-teal-6)', borderRadius: 8, padding: 16 }}>
-                      <Text fw={700} c="teal" mb="xs">Do</Text>
-                      <Text size="sm" c="dimmed">Placeholder: example of correct color usage.</Text>
-                    </div>
-                    <div style={{ border: '2px solid var(--mantine-color-red-6)', borderRadius: 8, padding: 16 }}>
-                      <Text fw={700} c="red" mb="xs">Don't</Text>
-                      <Text size="sm" c="dimmed">Placeholder: example of incorrect color usage.</Text>
-                    </div>
-                  </SimpleGrid>
-                </div>
+                  <Accordion.Item value="other-colors">
+                    <Accordion.Control style={{ backgroundColor: 'var(--mantine-color-gray-1)' }}><Title order={3} c="gray">Other Colors</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text size="md">These colors have no semantic meaning and should not be used for status indicators or actions. They are available for decorative purposes only, such as color-coding custom tags or labels.</Text>
+                        {otherColorData.map((name) => (
+                          <div key={name}>
+                            <Text fw={500} mb={4} tt="capitalize">{name}</Text>
+                            <SimpleGrid cols={10} spacing="xs" mb="sm">
+                              {Array.from({ length: 10 }, (_, i) => (
+                                <Stack key={i} gap={4} align="center">
+                                  <ColorSwatch color={`var(--mantine-color-${name}-${i})`} size={50} radius="sm" />
+                                  <Text size="md" c="dimmed">{i}</Text>
+                                </Stack>
+                              ))}
+                            </SimpleGrid>
+                          </div>
+                        ))}
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Placeholder correct usage">
+                            <Badge color="pink">Custom Tag</Badge>
+                          </Example>
+                          <Example type="dont" caption="Placeholder incorrect usage">
+                            <Badge color="red">Custom Tag</Badge>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                </Accordion>
               </Stack>
             )}
-            {/* Buttons */}
+            {/* BUTTONS */}
             {active === 'Buttons' && (
               <Accordion multiple defaultValue={['when-to-use', 'variants', 'labels', 'sections']}>
                 <Accordion.Item value="when-to-use">
@@ -196,20 +274,24 @@ function App() {
                       </Table>
                       <Space h="xl"/>
                       <Text>A button semantically represents actions that modify the application state or launch an event.</Text>
-                      <ExamplePair
-                        doContent={<Button variant="filled" color="teal">Save Assessment</Button>}
-                        doCaption="Yes! Saves data — modifies application state"
-                        dontContent={<Button variant="filled">Analytics</Button>}
-                        dontCaption="No! Navigation should use a link, not a button"
-                      />
+                      <ExampleSection cols={2}>
+                        <Example type="do" caption="Yes! Saves data — modifies application state">
+                          <Button variant="filled" color="teal">Save Assessment</Button>
+                        </Example>
+                        <Example type="dont" caption="No! Navigation should use a link, not a button">
+                          <Button variant="filled">Analytics</Button>
+                        </Example>
+                      </ExampleSection>
                       <Space h="xl"/>
-                      <Text>Buttons should allow the user to do something as opposed to go somewhere. </Text>
-                      <ExamplePair
-                        doContent={<Button variant="filled" color="red" leftSection={<IconTrash size={20}/>}>Delete Module</Button>}
-                        doCaption="Yes! Does something (deletes a module)"
-                        dontContent={<Button variant="filled">Portal Home</Button>}
-                        dontCaption="No! Goes somewhere — use a link instead"
-                      />
+                      <Text>Buttons should allow the user to do something as opposed to go somewhere.</Text>
+                      <ExampleSection cols={2}>
+                        <Example type="do" caption="Yes! Does something (deletes a module)">
+                          <Button variant="filled" color="red" leftSection={<IconTrash size={20}/>}>Delete Module</Button>
+                        </Example>
+                        <Example type="dont" caption="No! Goes somewhere — use a link instead">
+                          <Button variant="filled">Portal Home</Button>
+                        </Example>
+                      </ExampleSection>
                       <Space h="l"/>
                     </Stack>
                   </Accordion.Panel>
@@ -229,26 +311,48 @@ function App() {
                       </SimpleGrid>
                       <Space h="xl"/>
                       <Text>If there are multiple buttons on-screen that use the same color, items lower on the action hierarchy may be differentiated by using the light variant.</Text>
-                      <ExamplePair
-                        doContent={<div style={{ display: 'flex', gap: 8 }}><Button variant="filled" color="teal">Save</Button><Button variant="filled" color="gray">Cancel</Button><Button variant="filled" color="red">Delete</Button></div>}
-                        doCaption="Yes! Buttons use the filled variant"
-                        dontContent={<div style={{ display: 'flex', gap: 8 }}><Button variant="light" color="teal">Save</Button><Button variant="light" color="gray">Cancel</Button><Button variant="light" color="red">Delete</Button></div>}
-                        dontCaption="No! Unnecessary use of the light variant"
-                      />
-                      <ExamplePair
-                        doContent={<div style={{ display: 'flex', gap: 8 }}><Button variant="filled" color="blue">Add Question</Button><Button variant="light" color="blue">Add Answer</Button><Button variant="light" color="blue">Add Logic</Button></div>}
-                        doCaption="Yes! Actions differentiated by hierarchy"
-                        dontContent={<div style={{ display: 'flex', gap: 8 }}><Button variant="filled" color="blue">Add Question</Button><Button variant="filled" color="blue">Add Answer</Button><Button variant="filled" color="blue">Add Logic</Button></div>}
-                        dontCaption="No! Actions have no differentiation"
-                      />
+                      <ExampleSection cols={2}>
+                        <Example type="do" caption="Yes! Buttons use the filled variant">
+                          <div style={{ display: 'flex', gap: 8 }}>
+                            <Button variant="filled" color="teal">Save</Button>
+                            <Button variant="filled" color="gray">Cancel</Button>
+                            <Button variant="filled" color="red">Delete</Button>
+                          </div>
+                        </Example>
+                        <Example type="dont" caption="No! Unnecessary use of the light variant">
+                          <div style={{ display: 'flex', gap: 8 }}>
+                            <Button variant="light" color="teal">Save</Button>
+                            <Button variant="light" color="gray">Cancel</Button>
+                            <Button variant="light" color="red">Delete</Button>
+                          </div>
+                        </Example>
+                      </ExampleSection>
+                      <ExampleSection cols={2}>
+                        <Example type="do" caption="Yes! Actions differentiated by hierarchy">
+                          <div style={{ display: 'flex', gap: 8 }}>
+                            <Button variant="filled" color="blue">Add Question</Button>
+                            <Button variant="light" color="blue">Add Answer</Button>
+                            <Button variant="light" color="blue">Add Logic</Button>
+                          </div>
+                        </Example>
+                        <Example type="dont" caption="No! Actions have no differentiation">
+                          <div style={{ display: 'flex', gap: 8 }}>
+                            <Button variant="filled" color="blue">Add Question</Button>
+                            <Button variant="filled" color="blue">Add Answer</Button>
+                            <Button variant="filled" color="blue">Add Logic</Button>
+                          </div>
+                        </Example>
+                      </ExampleSection>
                       <Space h="xl"/>
                       <Text>See the Colors section for guidance on choosing colors.</Text>
-                      <ExamplePair
-                        doContent={<Button variant="filled" color="teal">Save</Button>}
-                        doCaption="Yes! Teal signals successful completion"
-                        dontContent={<Button variant="filled" color="pink">Save</Button>}
-                        dontCaption="No! Pink has no semantic meaning for this action"
-                      />
+                      <ExampleSection cols={2}>
+                        <Example type="do" caption="Yes! Teal signals successful completion">
+                          <Button variant="filled" color="teal">Save</Button>
+                        </Example>
+                        <Example type="dont" caption="No! Pink has no semantic meaning for this action">
+                          <Button variant="filled" color="pink">Save</Button>
+                        </Example>
+                      </ExampleSection>
                     </Stack>
                   </Accordion.Panel>
                 </Accordion.Item>
@@ -256,21 +360,25 @@ function App() {
                   <Accordion.Control><Title order={3}>Labels</Title></Accordion.Control>
                   <Accordion.Panel>
                     <Stack gap="sm">
-                      <Text>Buttons should always be labeled with text that clearly describes what the button does. </Text>
-                      <ExamplePair
-                        doContent={<Button variant="filled">Import Questions</Button>}
-                        doCaption="Yes! Function is clearly described"
-                        dontContent={<Button variant="filled">Import</Button>}
-                        dontCaption="No! Function is unclear"
-                      />
+                      <Text>Buttons should always be labeled with text that clearly describes what the button does.</Text>
+                      <ExampleSection cols={2}>
+                        <Example type="do" caption="Yes! Function is clearly described">
+                          <Button variant="filled">Import Questions</Button>
+                        </Example>
+                        <Example type="dont" caption="No! Function is unclear">
+                          <Button variant="filled">Import</Button>
+                        </Example>
+                      </ExampleSection>
                       <Space h="xl"/>
                       <Text>Button labels should always be capitalized.</Text>
-                      <ExamplePair
-                        doContent={<Button variant="filled">Edit Scores</Button>}
-                        doCaption="Yes! Text is capitalized"
-                        dontContent={<Button variant="filled">Edit scores</Button>}
-                        dontCaption="No! Text is not fully capitalized"
-                      />
+                      <ExampleSection cols={2}>
+                        <Example type="do" caption="Yes! Text is capitalized">
+                          <Button variant="filled">Edit Scores</Button>
+                        </Example>
+                        <Example type="dont" caption="No! Text is not fully capitalized">
+                          <Button variant="filled">Edit scores</Button>
+                        </Example>
+                      </ExampleSection>
                     </Stack>
                   </Accordion.Panel>
                 </Accordion.Item>
@@ -279,34 +387,40 @@ function App() {
                   <Accordion.Panel>
                     <Stack gap="sm">
                       <Text>Illustrative icons (images that depict objects or concepts) should go in the leftSection</Text>
-                      <ExamplePair
-                        doContent={<Button leftSection={<IconFilter size={20}/>} variant="filled">Filters</Button>}
-                        doCaption="Yes! Icon in the leftSection"
-                        dontContent={<Button rightSection={<IconFilter size={20}/>} variant="filled">Filters</Button>}
-                        dontCaption="No! Icon in the rightSection"
-                      />
+                      <ExampleSection cols={2}>
+                        <Example type="do" caption="Yes! Icon in the leftSection">
+                          <Button leftSection={<IconFilter size={20}/>} variant="filled">Filters</Button>
+                        </Example>
+                        <Example type="dont" caption="No! Icon in the rightSection">
+                          <Button rightSection={<IconFilter size={20}/>} variant="filled">Filters</Button>
+                        </Example>
+                      </ExampleSection>
                       <Space h="xl"/>
                       <Text>Arrows should go in the rightSection</Text>
-                      <ExamplePair
-                        doContent={<Button rightSection={<IconChevronDown size={20}/>} variant="filled">Cycle Actions</Button>}
-                        doCaption="Yes! Dropdown arrow in the rightSection"
-                        dontContent={<Button leftSection={<IconChevronDown size={20}/>} variant="filled">Button Label</Button>}
-                        dontCaption="No! Dropdown arrow in the leftSection"
-                      />
+                      <ExampleSection cols={2}>
+                        <Example type="do" caption="Yes! Dropdown arrow in the rightSection">
+                          <Button rightSection={<IconChevronDown size={20}/>} variant="filled">Cycle Actions</Button>
+                        </Example>
+                        <Example type="dont" caption="No! Dropdown arrow in the leftSection">
+                          <Button leftSection={<IconChevronDown size={20}/>} variant="filled">Button Label</Button>
+                        </Example>
+                      </ExampleSection>
                       <Space h="xl"/>
                       <Text>Buttons should generally have an illustration or an arrow, not both. If a case comes up where you think a button needs both an icon and an arrow, discuss with other developers + project managers.</Text>
-                      <ExamplePair
-                        doContent={<Button variant="filled" leftSection={<IconTrash size={20}/>}>Delete</Button>}
-                        doCaption="Yes! One icon, no arrow"
-                        dontContent={<Button variant="filled" leftSection={<IconTrash size={20}/>} rightSection={<IconChevronDown size={20}/>}>Delete</Button>}
-                        dontCaption="No! Has both an icon and an arrow"
-                      />
+                      <ExampleSection cols={2}>
+                        <Example type="do" caption="Yes! One icon, no arrow">
+                          <Button variant="filled" leftSection={<IconTrash size={20}/>}>Delete</Button>
+                        </Example>
+                        <Example type="dont" caption="No! Has both an icon and an arrow">
+                          <Button variant="filled" leftSection={<IconTrash size={20}/>} rightSection={<IconChevronDown size={20}/>}>Delete</Button>
+                        </Example>
+                      </ExampleSection>
                     </Stack>
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
             )}
-            {/* Loader */}
+            {/* LOADER */}
             {active === 'Loader' && (
               <>
                 <Text>Loaders should always be <Text component="span" c="blue" fw={700}>HireScore blue</Text>.</Text>
@@ -325,50 +439,62 @@ function App() {
             {active === 'Action Icon' && (
               <Stack gap="lg">
                 <Text>Placeholder: add Action Icon guidelines here.</Text>
-                <ExamplePair
-                  doContent={<ActionIcon variant="filled"><IconTrash size={16} /></ActionIcon>}
-                  doCaption="Yes! Placeholder correct usage"
-                  dontContent={<ActionIcon variant="filled"><IconTrash size={16} /></ActionIcon>}
-                  dontCaption="No! Placeholder incorrect usage"
-                />
+                <ExampleSection cols={2}>
+                  <Example type="do" caption="Yes! Placeholder correct usage">
+                    <ActionIcon variant="filled"><IconTrash size={16} /></ActionIcon>
+                  </Example>
+                  <Example type="dont" caption="No! Placeholder incorrect usage">
+                    <ActionIcon variant="filled"><IconTrash size={16} /></ActionIcon>
+                  </Example>
+                </ExampleSection>
               </Stack>
             )}
             {active === 'Badge' && (
               <Stack gap="lg">
                 <Text>Badges should be size medium.</Text>
-                <ExamplePair
-                  doContent={<Badge size="md">Lorem Ipsum Dolor Sit</Badge>}
-                  doCaption="Yes! Size medium"
-                  dontContent={<Badge size="xl">Lorem Ipsum Dolor Sit</Badge>}
-                  dontCaption="No! Don't use a custom size"
-                />
+                <ExampleSection cols={2}>
+                  <Example type="do" caption="Yes! Size medium">
+                    <Badge size="md">Lorem Ipsum Dolor Sit</Badge>
+                  </Example>
+                  <Example type="dont" caption="No! Don't use a custom size">
+                    <Badge size="xl">Lorem Ipsum Dolor Sit</Badge>
+                  </Example>
+                </ExampleSection>
                 <Text>Do not use radius options — the default radius (XL) is the one we want.</Text>
-                <ExamplePair
-                  doContent={<Badge>Lorem Ipsum Dolor Sit</Badge>}
-                  doCaption="Yes! Default radius"
-                  dontContent={<Badge radius="sm">Lorem Ipsum Dolor Sit</Badge>}
-                  dontCaption="No! Don't use a custom radius"
-                />
+                <ExampleSection cols={2}>
+                  <Example type="do" caption="Yes! Default radius">
+                    <Badge>Lorem Ipsum Dolor Sit</Badge>
+                  </Example>
+                  <Example type="dont" caption="No! Don't use a custom radius">
+                    <Badge radius="sm">Lorem Ipsum Dolor Sit</Badge>
+                  </Example>
+                </ExampleSection>
                 <Text>When badges are used to display search filters, use the outline variant.</Text>
-                <ExamplePair
-                  doContent={<Badge variant="outline">Active Filter</Badge>}
-                  doCaption="Yes! Outline variant for filters"
-                  dontContent={<Badge variant="filled">Active Filter</Badge>}
-                  dontCaption="No! Filled variant for filters"
-                />
+                <ExampleSection cols={2}>
+                  <Example type="do" caption="Yes! Outline variant for filters">
+                    <Badge variant="outline">Active Filter</Badge>
+                  </Example>
+                  <Example type="dont" caption="No! Filled variant for filters">
+                    <Badge variant="filled">Active Filter</Badge>
+                  </Example>
+                </ExampleSection>
               </Stack>
             )}
+            {/* INPUTS */}
             {active === 'Inputs' && (
               <Stack gap="lg">
                 <Text>Placeholder: add Inputs guidelines here.</Text>
-                <ExamplePair
-                  doContent={<TextInput label="Placeholder correct usage" placeholder="e.g. example value" />}
-                  doCaption="Yes! Placeholder correct usage"
-                  dontContent={<TextInput placeholder="Placeholder incorrect usage" />}
-                  dontCaption="No! Placeholder incorrect usage"
-                />
+                <ExampleSection cols={2}>
+                  <Example type="do" caption="Yes! Placeholder correct usage">
+                    <TextInput label="Placeholder correct usage" placeholder="e.g. example value" />
+                  </Example>
+                  <Example type="dont" caption="No! Placeholder incorrect usage">
+                    <TextInput placeholder="Placeholder incorrect usage" />
+                  </Example>
+                </ExampleSection>
               </Stack>
             )}
+            {/* MODALS */}
             {active === 'Modal' && (
               <>
                 <Modal opened={modalOpen} onClose={() => setModalOpen(false)} title="This is a Modal!">
@@ -377,7 +503,7 @@ function App() {
                 <Button onClick={() => setModalOpen(true)}>Open Modal</Button>
               </>
             )}
-            {/* Icons Table */}
+            {/* ICONS */}
             {active === 'Icons' && (
               <Stack gap="sm">
                 <TextInput
