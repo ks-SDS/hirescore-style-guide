@@ -110,6 +110,24 @@ const iconData = [
   { icon: <IconFilter size={40} />, name: 'filter', useCase: 'Table filter settings' },
 ]
 
+function WIPBanner() {
+  return (
+    <Text
+      ta="center"
+      fw={600}
+      p="sm"
+      style={{
+        backgroundColor: 'var(--mantine-color-yellow-1)',
+        border: '1px solid var(--mantine-color-yellow-5)',
+        borderRadius: 5,
+        color: 'var(--mantine-color-yellow-9)',
+      }}
+    >
+      ⚠ Work in progress — this page is currently under construction
+    </Text>
+  )
+}
+
 function ExampleSection({ cols = 2, children }) {
   return (
     <SimpleGrid cols={cols} spacing="sm">
@@ -188,6 +206,7 @@ function App() {
             {/* COLORS */}
             {active === 'Colors' && (
               <Stack gap="lg">
+                <WIPBanner />
                 <Table withBorder striped highlightOnHover>
                   <Table.Thead>
                     <Table.Tr>
@@ -254,6 +273,8 @@ function App() {
             )}
             {/* BUTTONS */}
             {active === 'Buttons' && (
+              <Stack gap="lg">
+              <WIPBanner />
               <Accordion multiple defaultValue={['when-to-use', 'variants', 'labels', 'sections']}>
                 <Accordion.Item value="when-to-use">
                   <Accordion.Control><Title order={3}>When to Use a Button vs a Link</Title></Accordion.Control>
@@ -419,10 +440,12 @@ function App() {
                   </Accordion.Panel>
                 </Accordion.Item>
               </Accordion>
+              </Stack>
             )}
             {/* LOADER */}
             {active === 'Loader' && (
               <>
+              <WIPBanner />
                 <Text>Loaders should always be <Text component="span" c="blue" fw={700}>HireScore blue</Text>.</Text>
                 <SimpleGrid cols={2}>
                   <Stack align="center" style={{ border: '2px solid var(--mantine-color-teal-6)', borderRadius: 8, padding: 16 }}>
@@ -438,6 +461,7 @@ function App() {
             )}
             {active === 'Action Icon' && (
               <Stack gap="lg">
+                <WIPBanner />
                 <Text>Placeholder: add Action Icon guidelines here.</Text>
                 <ExampleSection cols={2}>
                   <Example type="do" caption="Yes! Placeholder correct usage">
@@ -451,6 +475,7 @@ function App() {
             )}
             {active === 'Badge' && (
               <Stack gap="lg">
+                <WIPBanner />
                 <Text>Badges should be size medium.</Text>
                 <ExampleSection cols={2}>
                   <Example type="do" caption="Yes! Size medium">
@@ -483,6 +508,7 @@ function App() {
             {/* INPUTS */}
             {active === 'Inputs' && (
               <Stack gap="lg">
+                <WIPBanner />
                 <Text>Placeholder: add Inputs guidelines here.</Text>
                 <ExampleSection cols={2}>
                   <Example type="do" caption="Yes! Placeholder correct usage">
@@ -497,6 +523,7 @@ function App() {
             {/* MODALS */}
             {active === 'Modal' && (
               <>
+                <WIPBanner />
                 <Modal opened={modalOpen} onClose={() => setModalOpen(false)} title="This is a Modal!">
                   <Text>This is placeholder modal content! :)</Text>
                 </Modal>
@@ -506,6 +533,7 @@ function App() {
             {/* ICONS */}
             {active === 'Icons' && (
               <Stack gap="sm">
+                <WIPBanner />
                 <TextInput
                   placeholder="Search icons..."
                   value={iconSearch}
