@@ -1,6 +1,6 @@
-import { AppShell, NavLink, Title, Text, Stack, Container, Table, Badge, ColorSwatch, SimpleGrid, Button, Loader, TextInput, Modal, Accordion, ActionIcon, Space, Divider } from '@mantine/core'
+import { AppShell, NavLink, Title, Text, Stack, Container, Table, Badge, SimpleGrid, Button, Loader, TextInput, Modal, Accordion, ActionIcon, Space, Divider, Alert, Notification, Input, Pagination, Indicator } from '@mantine/core'
 import { useState } from 'react'
-import { IconTrash, IconAffiliate, IconChartAreaLine, IconMapPin, IconHelpCircle, IconInfoCircle, IconBell, IconFilter, IconArrowBigLeft, IconArrowDownBar, IconChevronDown, IconSettings} from '@tabler/icons-react'
+import { IconTrash, IconAffiliate, IconChartAreaLine, IconMapPin, IconHelpCircle, IconInfoCircle, IconBell, IconFilter, IconArrowBigLeft, IconArrowDownBar, IconChevronDown, IconSettings, IconAlarm, IconAlertTriangle, IconX, IconLock, IconSearch } from '@tabler/icons-react'
 
 
 const sections = [
@@ -22,17 +22,25 @@ const swatchData = [
     name: 'blue',
     description: (
       <>
-        <Text>Blue does not carry a specific semantic meaning and it should not be used in situations where a semantic color is more appropriate.</Text>
         <Text>Use HireScore blue as the dominant color for primary actions, active/selected states, and important information.</Text>
+        <Text>Blue does not carry a specific semantic meaning and it should not be used in situations where a semantic color is more appropriate.</Text>
       </>
     ),
     examples: (
       <ExampleSection cols={2}>
-        <Example type="do" caption="Yes! Placeholder correct usage">
+        <Example type="do" caption="Yes! This button initiates an action">
           <Button variant="filled" color="blue">Add Filter</Button>
         </Example>
-        <Example type="dont" caption="No! Placeholder incorrect usage">
+        <Example type="dont" caption="No! Buttons that complete actions should use teal">
           <Button variant="filled" color="blue">Save Assessment</Button>
+        </Example>
+        <Example type="do" caption="Yes! Blue indicates the current active page">
+          <Pagination total={5}></Pagination>
+        </Example>
+        <Example type="dont" caption="No! Unread notifications should be indicated in Red">
+          <Indicator color="blue">
+            <IconBell size={25} color="gray" />
+          </Indicator>
         </Example>
       </ExampleSection>
     ),
@@ -42,11 +50,17 @@ const swatchData = [
     description: 'Use teal to signal the successful completion of a processes- eg, save buttons and confirmation messages. Teal can also indicate "good" metrics such as high test scores.',
     examples: (
       <ExampleSection cols={2}>
-        <Example type="do" caption="Yes! Placeholder correct usage">
+        <Example type="do" caption="Yes! Teal indicates success or completion of a process">
           <Button variant="filled" color="teal">Save Assessment</Button>
         </Example>
-        <Example type="dont" caption="No! Placeholder incorrect usage">
-          <Button variant="filled" color="teal">Analytics</Button>
+        <Example type="dont" caption="No! Use Blue to initiate actions">
+          <Button variant="filled" color="teal">Create Assessment</Button>
+        </Example>
+        <Example type="do" caption="Yes! Use Teal for confirmation messages">
+          <Notification color="teal" title="Successfully Saved Changes">Your changes have been saved.</Notification>
+        </Example>
+        <Example type="dont" caption="No! Teal should not be used for poor/negative assessment scores">
+          <Text fw={700} c="teal" style={{ backgroundColor: 'var(--mantine-color-teal-0)', padding: '2px 8px', borderRadius: 4 }}>-50</Text>
         </Example>
       </ExampleSection>
     ),
@@ -56,25 +70,44 @@ const swatchData = [
     description: 'Use orange for situations where the user should use caution, such as reversibly destructive actions (clearing/resetting scores, etc) or when a minor error has occurred.',
     examples: (
       <ExampleSection cols={2}>
-        <Example type="do" caption="Yes! Placeholder correct usage">
-          <Button variant="filled" color="orange">Clear Scores</Button>
+        <Example type="do" caption="Yes! Orange used to caution the user">
+          <Text ta="center" fw={500} p="sm" style={{
+            backgroundColor: 'var(--mantine-color-yellow-1)',
+            border: '1px solid var(--mantine-color-yellow-5)',
+            borderRadius: 5,
+            color: 'var(--mantine-color-yellow-9)',
+          }}>
+          This section of the system is a work-in-progress and is not ready to be used for deliverables. 
+          </Text>
         </Example>
-        <Example type="dont" caption="No! Placeholder incorrect usage">
-          <Button variant="filled" color="orange">Save Assessment</Button>
+        <Example type="dont" caption="No! Orange should never be used for success messages">
+          <Notification color="orange" title="Message Sent">Successfully sent emails to applicants</Notification>
+        </Example>
+        <Example type="do" caption="Yes! Orange used to indicate bugs/errors">
+          <Button type="filled" color="orange">View Detected Issues</Button>
+        </Example>
+        <Example type="dont" caption="No! Orange should only be used for reversibly destructive actions like clearing">
+          <Button type="filled" color="orange" leftSection={<IconTrash size={16} />}>Delete</Button>
         </Example>
       </ExampleSection>
     ),
   },
   {
     name: 'red',
-    description: 'Use red for critical warnings- eg, to confirm irreversibly destructive actions or to tell the user about a major error. Red can also indicate "bad" metrics such as failing test scores.',
+    description: 'Use red for alerts critical warnings- eg, to indicate an unread notification, to confirm irreversibly destructive actions, or to tell the user about a major error. Red can also indicate "bad" metrics such as failing test scores and blocked actions',
     examples: (
       <ExampleSection cols={2}>
-        <Example type="do" caption="Yes! Placeholder correct usage">
+        <Example type="do" caption="Yes! Red indicates destruction or deletion">
           <Button variant="filled" color="red" leftSection={<IconTrash size={16} />}>Delete Module</Button>
         </Example>
-        <Example type="dont" caption="No! Placeholder incorrect usage">
-          <Button variant="filled" color="red">Clear Scores</Button>
+        <Example type="dont" caption="No! Reversibly clearing scores should use orange">
+          <Button variant="filled" color="red" leftSection={<IconAlertTriangle size={16} />}>Clear Scores</Button>
+        </Example>
+        <Example type="do" caption="Yes! Red indicates a blocked/'illegal' action">
+          <Notification color="red" title="Action not available">This action is not permitted for demo cycles</Notification>
+        </Example>
+        <Example type="dont" caption="No! Search filters should use blue">
+          <Badge color="red" variant="outline" leftSection={<IconLock size={16} />} rightSection={<IconX size={16} />}>Status: Inactive</Badge>
         </Example>
       </ExampleSection>
     ),
@@ -84,20 +117,35 @@ const swatchData = [
     description: 'Use gray for user actions like canceling or backing out of a process. Use gray on interactible elements to indicate that they are disabled or unavailable. Other than these two cases, gray is neutral and should be used for most text and formatting elements (borders, etc).',
     examples: (
       <ExampleSection cols={2}>
-        <Example type="do" caption="Yes! Placeholder correct usage">
+        <Example type="do" caption="Yes! Gray indicates canceling an action">
           <Button variant="filled" color="gray">Cancel</Button>
         </Example>
-        <Example type="dont" caption="No! Placeholder incorrect usage">
+        <Example type="dont" caption="No! Gray cancels actions-- use teal for save buttons">
           <Button variant="filled" color="gray">Save Assessment</Button>
+        </Example>
+        <Example type="do" caption="Yes! Gray can be used for neutral purposes, like input labels/placeholders">
+          <TextInput leftSection={<IconSearch size={16} />} placeholder="Search Applicants"></TextInput>
+        </Example>
+        <Example type="dont" caption="No! Loaders should always be blue">
+          <Loader color="gray"></Loader>
+
         </Example>
       </ExampleSection>
     ),
   },
+  {
+    name: 'other colors',
+    description: (
+      <Stack gap="xs">
+        <Text>The colors {['Pink','Grape','Violet','Indigo','Cyan','Green','Lime','Yellow'].map(c => (
+          <Text key={c} component="span" style={{ backgroundColor: `var(--mantine-color-${c.toLowerCase()}-6)`, color: '#fff', padding: '1px 5px', borderRadius: 3 }}>{c}</Text>
+        )).reduce((acc, el, i) => i === 0 ? [el] : [...acc, i === 7 ? ', and ' : ', ', el], [])} are not assigned any particular semantic meaning and should not be used for any purpose already covered by blue, teal, orange, red, or gray.</Text>
+        <Text>These colors may be used for data visualization, custom tags, and other cases where colors are arbitrary.</Text>
+      </Stack>
+    ),
+  }
 ]
 
-const otherColorData = [
-  'pink', 'grape', 'violet', 'indigo', 'cyan', 'green', 'lime', 'yellow',
-]
 
 const iconData = [
   { icon: <IconTrash size={40} />, name: 'trash', useCase: 'Permanently delete' },
@@ -206,7 +254,6 @@ function App() {
             {/* COLORS */}
             {active === 'Colors' && (
               <Stack gap="lg">
-                <WIPBanner />
                 <Table withBorder striped highlightOnHover>
                   <Table.Thead>
                     <Table.Tr>
@@ -227,7 +274,7 @@ function App() {
                     ))}
                   </Table.Tbody>
                 </Table>
-                <Accordion multiple defaultValue={['blue', 'teal', 'orange', 'red', 'gray', 'other-colors']}>
+                <Accordion multiple defaultValue={['blue', 'teal', 'orange', 'red', 'gray', 'other colors']}>
                   {swatchData.map(({ name, description, examples }) => (
                     <Accordion.Item key={name} value={name}>
                       <Accordion.Control><Title order={3} tt="capitalize" c={name}>{name}</Title></Accordion.Control>
@@ -240,33 +287,6 @@ function App() {
                     </Accordion.Item>
                   ))}
                   <Accordion.Item value="other-colors">
-                    <Accordion.Control style={{ backgroundColor: 'var(--mantine-color-gray-1)' }}><Title order={3} c="gray">Other Colors</Title></Accordion.Control>
-                    <Accordion.Panel>
-                      <Stack gap="sm">
-                        <Text size="md">These colors have no semantic meaning and should not be used for status indicators or actions. They are available for decorative purposes only, such as color-coding custom tags or labels.</Text>
-                        {otherColorData.map((name) => (
-                          <div key={name}>
-                            <Text fw={500} mb={4} tt="capitalize">{name}</Text>
-                            <SimpleGrid cols={10} spacing="xs" mb="sm">
-                              {Array.from({ length: 10 }, (_, i) => (
-                                <Stack key={i} gap={4} align="center">
-                                  <ColorSwatch color={`var(--mantine-color-${name}-${i})`} size={50} radius="sm" />
-                                  <Text size="md" c="dimmed">{i}</Text>
-                                </Stack>
-                              ))}
-                            </SimpleGrid>
-                          </div>
-                        ))}
-                        <ExampleSection cols={2}>
-                          <Example type="do" caption="Placeholder correct usage">
-                            <Badge color="pink">Custom Tag</Badge>
-                          </Example>
-                          <Example type="dont" caption="Placeholder incorrect usage">
-                            <Badge color="red">Custom Tag</Badge>
-                          </Example>
-                        </ExampleSection>
-                      </Stack>
-                    </Accordion.Panel>
                   </Accordion.Item>
                 </Accordion>
               </Stack>
