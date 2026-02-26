@@ -458,33 +458,83 @@ function App() {
             {active === 'Badge' && (
               <Stack gap="lg">
                 <WIPBanner />
-                <Text>Badges should be size medium.</Text>
-                <ExampleSection cols={2}>
-                  <Example type="do" caption="Yes! Size medium">
-                    <Badge size="md">Lorem Ipsum Dolor Sit</Badge>
-                  </Example>
-                  <Example type="dont" caption="No! Don't use a custom size">
-                    <Badge size="xl">Lorem Ipsum Dolor Sit</Badge>
-                  </Example>
-                </ExampleSection>
-                <Text>Do not use radius options — the default radius (XL) is the one we want.</Text>
-                <ExampleSection cols={2}>
-                  <Example type="do" caption="Yes! Default radius">
-                    <Badge>Lorem Ipsum Dolor Sit</Badge>
-                  </Example>
-                  <Example type="dont" caption="No! Don't use a custom radius">
-                    <Badge radius="sm">Lorem Ipsum Dolor Sit</Badge>
-                  </Example>
-                </ExampleSection>
-                <Text>When badges are used to display search filters, use the outline variant.</Text>
-                <ExampleSection cols={2}>
-                  <Example type="do" caption="Yes! Outline variant for filters">
-                    <Badge variant="outline">Active Filter</Badge>
-                  </Example>
-                  <Example type="dont" caption="No! Filled variant for filters">
-                    <Badge variant="filled">Active Filter</Badge>
-                  </Example>
-                </ExampleSection>
+                <Text>Badges are elements that contain short, discrete pieces of information that you can read at a glance. Use cases include search filters and status indicators.</Text>
+                <Accordion multiple defaultValue={['variants', 'labels', 'radius', 'size']}>
+                  <Accordion.Item value="variants">
+                    <Accordion.Control><Title order={4}>Variants</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>When badges are used to display search filters, use the outline variant. Include an "X" in the rightSection to close/clear the filter. Use the color Blue.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Correct variant, includes close button">
+                            <Badge variant="outline" rightSection={<IconX size={16}/>}>Status: Active</Badge>
+                          </Example>
+                          <Example type="dont" caption="No! Wrong variant, no close button">
+                            <Badge variant="filled">Status: Active</Badge>
+                          </Example>
+                        </ExampleSection>
+                        <Space h="L" />
+                        <Text>When badges are used to display status, use the Filled variant. Do not include a close button. Use the the correct semantic color, if applicable.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Semantic color use, no close button">
+                            <Badge color="green" >Offer Accepted</Badge>
+                          </Example>
+                          <Example type="dont" caption="No! Incorrect color, should not have close button">
+                            <Badge variant="outline" rightSection={<IconX size={16}/>}>Offer Accepted</Badge>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="labels">
+                    <Accordion.Control><Title order={4}>Labels</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Badge labels/content should be as short as possible without removing any information.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! This badge label is succinct">
+                            <Badge variant="outline" rightSection={<IconX size={16}/>}>Organization: ACME</Badge>
+                          </Example>
+                          <Example type="dont" caption="No! This badge contains more detail than necessary">
+                            <Badge variant="outline" rightSection={<IconX size={16}/>}>Name of client organization: ACME</Badge>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="radius">
+                    <Accordion.Control><Title order={4}>Radius</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Do not use radius options — the default radius (XL) is the one we want.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Default radius">
+                            <Badge>Lorem Ipsum</Badge>
+                          </Example>
+                          <Example type="dont" caption="No! Don't use a custom radius">
+                            <Badge radius="sm">Lorem Ipsum</Badge>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="size">
+                    <Accordion.Control><Title order={4}>Size</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Badges should be size medium.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Size medium">
+                            <Badge size="md">Lorem Ipsum</Badge>
+                          </Example>
+                          <Example type="dont" caption="No! Don't use a custom size">
+                            <Badge size="xl">Lorem Ipsum</Badge>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                </Accordion>
               </Stack>
             )}
             {/* INPUTS */}
