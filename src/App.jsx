@@ -185,12 +185,12 @@ function ExampleSection({ cols = 2, children }) {
 }
 
 function Example({ type, caption, children }) {
-  const isDo = type === 'do'
+  const borderColor = type === 'do' ? 'teal' : type === 'dont' ? 'red' : 'gray'
   return (
     <Stack
       align="center"
       style={{
-        border: `1px solid var(--mantine-color-${isDo ? 'teal' : 'red'}-6)`,
+        border: `1px solid var(--mantine-color-${borderColor}-6)`,
         borderRadius: 5,
         padding: 16,
       }}
@@ -294,74 +294,14 @@ function App() {
             {/* BUTTONS */}
             {active === 'Buttons' && (
               <Stack gap="lg">
+                <WIPBanner />
               <Accordion multiple defaultValue={['when-to-use', 'variants', 'labels', 'sections']}>
-                <Accordion.Item value="when-to-use">
-                  <Accordion.Control><Title order={3}>When to Use a Button vs a Link</Title></Accordion.Control>
-                  <Accordion.Panel>
-                    <Stack gap="sm">
-                      <Table withBorder>
-                        <Table.Thead>
-                          <Table.Tr>
-                            <Table.Th>Use a Button (does something)</Table.Th>
-                            <Table.Th>Use a hypertext link (navigates somewhere)</Table.Th>
-                          </Table.Tr>
-                        </Table.Thead>
-                        <Table.Tbody>
-                          <Table.Tr><Table.Td>Create a new landing page</Table.Td><Table.Td>Visit an extant landing page</Table.Td></Table.Tr>
-                          <Table.Tr><Table.Td>Save edits to an assessment</Table.Td><Table.Td>Navigate between the edit/preview/publish/pdfs tabs for an assessment</Table.Td></Table.Tr>
-                          <Table.Tr><Table.Td>Generate/download a report</Table.Td><Table.Td>Visit the analytics page</Table.Td></Table.Tr>
-                        </Table.Tbody>
-                      </Table>
-                      <Space h="xl"/>
-                      <Text>A button represents actions that modify the application state or launch an event.</Text>
-                      <Text>Buttons should allow the user to <Text component="span" fs="italic">do something</Text>  as opposed to <Text component="span" fs="italic">go somewhere.</Text></Text>
-                      <ExampleSection cols={2}>
-                        <Example type="do" caption="Yes! Saves data — modifies application state">
-                          <Button variant="filled" color="teal">Save Assessment</Button>
-                        </Example>
-                        <Example type="dont" caption="No! Navigation should use a link, not a button">
-                          <Button variant="filled">Analytics</Button>
-                        </Example>
-                      </ExampleSection>
-                      <ExampleSection cols={2}>
-                        <Example type="do" caption="Yes! Does something (deletes a module)">
-                          <Button variant="filled" color="red" leftSection={<IconTrash size={20}/>}>Delete Module</Button>
-                        </Example>
-                        <Example type="dont" caption="No! Goes somewhere — use a link instead">
-                          <Button variant="filled">Portal Home</Button>
-                        </Example>
-                      </ExampleSection>
-                      <Space h="l"/>
-                    </Stack>
-                  </Accordion.Panel>
-                </Accordion.Item>
+                
                 <Accordion.Item value="variants">
                   <Accordion.Control><Title order={3}>Variants</Title></Accordion.Control>
                   <Accordion.Panel>
                     <Stack gap="sm">
-                      <Text>By default, all buttons should use the filled variant.</Text>
-                      <Text>The outline, subtle, transparent, and "default" variants should not be used.</Text>
-                      <ExampleSection cols={6}>
-                        <Example type="do" caption="Use me!">
-                          <Button variant="filled">Filled</Button>
-                        </Example>
-                        <Example type="do"caption="And sometimes me!">
-                          <Button variant="light" >Light</Button>
-                        </Example>
-                        <Example type="dont" caption="Don't use this variant">
-                          <Button variant="outline">Outline</Button>
-                        </Example>
-                        <Example type="dont" caption="Don't use this variant">
-                          <Button variant="subtle">Subtle</Button>
-                        </Example>
-                        <Example type="dont" caption="Don't use this variant">
-                          <Button variant="transparent">Transparent</Button>
-                        </Example>
-                        <Example type="dont" caption="Don't use this variant">
-                          <Button variant="default">Default</Button>
-                        </Example>
-                      </ExampleSection>
-                      <Space h="xl"/>
+                      <Text>Buttons should generally use the filled variant by default.</Text>
                       <Text>If there are multiple buttons on-screen that use the same <Text component="span" c="blue" style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setActive('Colors')}>color</Text>, items lower on the action hierarchy may be differentiated by using the light variant.</Text>
                       <ExampleSection cols={2}>
                         <Example type="do" caption="Yes! Buttons use the filled variant">
@@ -395,7 +335,30 @@ function App() {
                           </div>
                         </Example>
                       </ExampleSection>
+                      <Space h="l" />
+                      <Text>The outline, subtle, transparent, and "default" variants should be used to indicate links inline with text, or in circumstances where you need to indicate levels of hierarchy with buttons beyond filled and light.</Text>
+                      <ExampleSection cols={6}>
+                        <Example>
+                          <Button variant="filled">Filled</Button>
+                        </Example>
+                        <Example>
+                          <Button variant="light" >Light</Button>
+                        </Example>
+                        <Example>
+                          <Button variant="outline">Outline</Button>
+                        </Example>
+                        <Example>
+                          <Button variant="subtle">Subtle</Button>
+                        </Example>
+                        <Example>
+                          <Button variant="transparent">Transparent</Button>
+                        </Example>
+                        <Example>
+                          <Button variant="default">Default</Button>
+                        </Example>
+                      </ExampleSection>
                     </Stack>
+                    
                   </Accordion.Panel>
                 </Accordion.Item>
                 <Accordion.Item value="labels">
@@ -451,10 +414,10 @@ function App() {
                       <Text>Buttons should generally have an illustration or an arrow, not both. If a case comes up where you think a button needs both an icon and an arrow, discuss with other developers + project managers.</Text>
                       <ExampleSection cols={2}>
                         <Example type="do" caption="Yes! One icon, no arrow">
-                          <Button variant="filled" leftSection={<IconTrash size={20}/>}>Delete</Button>
+                          <Button variant="filled" color="red" leftSection={<IconTrash size={20}/>}>Delete</Button>
                         </Example>
                         <Example type="dont" caption="No! Has both an icon and an arrow">
-                          <Button variant="filled" leftSection={<IconTrash size={20}/>} rightSection={<IconChevronDown size={20}/>}>Delete</Button>
+                          <Button variant="filled" color="red" leftSection={<IconTrash size={20}/>} rightSection={<IconChevronDown size={20}/>}>Delete</Button>
                         </Example>
                       </ExampleSection>
                     </Stack>
