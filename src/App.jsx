@@ -234,7 +234,8 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false)
 
   function copyName(name) {
-    navigator.clipboard.writeText(name)
+    const reactName = 'Icon' + name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('')
+    navigator.clipboard.writeText(reactName)
     setCopied(name)
     setTimeout(() => setCopied(null), 1500)
   }
