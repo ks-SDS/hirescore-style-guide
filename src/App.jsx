@@ -1,6 +1,6 @@
-import { AppShell, NavLink, Title, Text, Stack, Container, Table, Badge, SimpleGrid, Button, Loader, TextInput, Modal, Accordion, ActionIcon, Space, Divider, Alert, Notification, Input, Pagination, Indicator } from '@mantine/core'
+import { AppShell, NavLink, Title, Text, Stack, Container, Table, Badge, SimpleGrid, Button, Loader, TextInput, Modal, Accordion, ActionIcon, Space, Divider, Alert, Notification, Input, Pagination, Indicator, Group } from '@mantine/core'
 import { useState } from 'react'
-import { IconTrash, IconAffiliate, IconChartAreaLine, IconMapPin, IconHelpCircle, IconInfoCircle, IconBell, IconFilter, IconArrowBigLeft, IconArrowDownBar, IconChevronDown, IconSettings, IconAlarm, IconAlertTriangle, IconX, IconLock, IconSearch } from '@tabler/icons-react'
+import { IconTrash, IconAffiliate, IconChartAreaLine, IconMapPin, IconHelpCircle, IconInfoCircle, IconBell, IconFilter, IconArrowBigLeft, IconArrowDownBar, IconChevronDown, IconSettings, IconAlarm, IconAlertTriangle, IconX, IconLock, IconSearch, IconAdjustments, IconArchive, IconBriefcase, IconChevronRight, IconChevronsLeft, IconCopy, IconDotsVertical, IconEye, IconLink, IconMail, IconMailForward, IconPackages, IconPhoto, IconRefresh, IconReportAnalytics, IconSelector, IconStar, IconUserCircle, IconUsers, IconUsersGroup, IconVocabulary } from '@tabler/icons-react'
 
 
 const sections = [
@@ -148,14 +148,39 @@ const swatchData = [
 
 
 const iconData = [
-  { icon: <IconTrash size={40} />, name: 'trash', useCase: 'Permanently delete' },
+  { icon: <IconAdjustments size={40} />, name: 'adjustments', useCase: 'Advanced settings / configuration options' },
   { icon: <IconAffiliate size={40} />, name: 'affiliate', useCase: 'Integrations/connections to other websites and systems' },
+  { icon: <IconArchive size={40} />, name: 'archive', useCase: 'Archive an item' },
+  { icon: <IconBell size={40} />, name: 'bell', useCase: 'Account notifications' },
+  { icon: <IconBriefcase size={40} />, name: 'briefcase', useCase: 'Hire section of the side menu' },
   { icon: <IconChartAreaLine size={40} />, name: 'chart-area-line', useCase: 'Cycle or organization-level analytics/stats' },
-  { icon: <IconMapPin size={40} />, name: 'map-pin', useCase: 'Location' },
+  { icon: <IconChevronDown size={40} />, name: 'chevron-down', useCase: 'Expand/collapse dropdowns' },
+  { icon: <IconChevronRight size={40} />, name: 'chevron-right', useCase: 'Navigate forward' },
+  { icon: <IconChevronsLeft size={40} />, name: 'chevrons-left', useCase: 'Collapse a panel or navigate back multiple steps' },
+  { icon: <IconCopy size={40} />, name: 'copy', useCase: 'Copy value(s) to clipboard' },
+  { icon: <IconDotsVertical size={40} />, name: 'dots-vertical', useCase: 'More options/context menu' },
+  { icon: <IconEye size={40} />, name: 'eye', useCase: 'Show/hide module' },
+  { icon: <IconFilter size={40} />, name: 'filter', useCase: 'Table filter settings' },
   { icon: <IconHelpCircle size={40} />, name: 'help-circle', useCase: 'Reserved for the Help button that lives in the top bar menu next to account info' },
   { icon: <IconInfoCircle size={40} />, name: 'info-circle', useCase: 'Information and explanatory text' },
-  { icon: <IconBell size={40} />, name: 'bell', useCase: 'Account notifications' },
-  { icon: <IconFilter size={40} />, name: 'filter', useCase: 'Table filter settings' },
+  { icon: <IconLink size={40} />, name: 'link', useCase: 'Hyperlink' },
+  { icon: <IconLock size={40} />, name: 'lock', useCase: 'Locked/restricted/ content' },
+  { icon: <IconMail size={40} />, name: 'mail', useCase: 'Email/messaging' },
+  { icon: <IconMailForward size={40} />, name: 'mail-forward', useCase: 'An email or message that has already been sent' },
+  { icon: <IconMapPin size={40} />, name: 'map-pin', useCase: 'Location' },
+  { icon: <IconPackages size={40} />, name: 'packages', useCase: 'Build/create/assemble' },
+  { icon: <IconPhoto size={40} />, name: 'photo', useCase: 'Images and other media' },
+  { icon: <IconRefresh size={40} />, name: 'refresh', useCase: 'Reset table to default' },
+  { icon: <IconReportAnalytics size={40} />, name: 'report-analytics', useCase: 'Reports / data analytics' },
+  { icon: <IconSearch size={40} />, name: 'search', useCase: 'Search' },
+  { icon: <IconSelector size={40} />, name: 'selector', useCase: 'Sort/reorder or edit pagination settings' },
+  { icon: <IconSettings size={40} />, name: 'settings', useCase: 'Settings / preferences' },
+  { icon: <IconStar size={40} />, name: 'star', useCase: 'Favorite/highlight' },
+  { icon: <IconTrash size={40} />, name: 'trash', useCase: 'Permanently delete' },
+  { icon: <IconUserCircle size={40} />, name: 'user-circle', useCase: 'Individual user/profile' },
+  { icon: <IconUsers size={40} />, name: 'users', useCase: 'Account roles/assume a user' },
+  { icon: <IconUsersGroup size={40} />, name: 'users-group', useCase: 'Client organizations and organization groups' },
+  { icon: <IconVocabulary size={40} />, name: 'vocabulary', useCase: 'Skillbuilder-- learning/reading/upskilling' },
 ]
 
 function WIPBanner() {
@@ -295,6 +320,9 @@ function App() {
             {active === 'Buttons' && (
               <Stack gap="lg">
                 <WIPBanner />
+                <Text>
+                  Buttons are interactive elements that allow users to navigate and perform actions on the site. 
+                </Text>
               <Accordion multiple defaultValue={['when-to-use', 'variants', 'labels', 'sections']}>
                 
                 <Accordion.Item value="variants">
@@ -429,6 +457,7 @@ function App() {
             {/* LOADER */}
             {active === 'Loader' && (
               <>
+              <Text>Loaders indicate buffering/loading states for asynchronous actions like sending form submissions or retrieving data.</Text>
                 <Text>Loaders should always be <Text component="span" c="blue" fw={700}>HireScore blue</Text>.</Text>
                 <Text>Use the Bars variant when loading/populating a table. Use the Oval variant everywhere else.</Text>
                 <ExampleSection cols={2}>
@@ -444,15 +473,82 @@ function App() {
             {active === 'Action Icon' && (
               <Stack gap="lg">
                 <WIPBanner />
-                <Text>Placeholder: add Action Icon guidelines here.</Text>
-                <ExampleSection cols={2}>
-                  <Example type="do" caption="Yes! Placeholder correct usage">
-                    <ActionIcon variant="filled"><IconTrash size={16} /></ActionIcon>
-                  </Example>
-                  <Example type="dont" caption="No! Placeholder incorrect usage">
-                    <ActionIcon variant="filled"><IconTrash size={16} /></ActionIcon>
-                  </Example>
-                </ExampleSection>
+                <Text>Action Icons are interactive elements that allow users to navigate and perform actions on the site (just like Buttons, except these don't have a label). Use Action Icons as an alternative to Buttons when an action can be concisely represented by an icon alone, without accompanying text. </Text>
+                <Text>See the Icons page for guidance on selecting icons.</Text>
+                <Accordion multiple defaultValue={['accessibility', 'variants', 'size', 'grouping']}>
+                  <Accordion.Item value="accessibility">
+                    <Accordion.Control><Title order={4}>Accessibility</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Because Action Icons show no text, it is very important to include both an aria-label and a title property. That way, if someone is using a screenreader or has trouble interpreting the icon, they can still understand the purpose of the element.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! This Action Icon has the required information attached. Hold your cursor over it for a moment to see the title.">
+                            <ActionIcon aria-label="Filters" title="Filters" variant="filled"><IconFilter size={16} /></ActionIcon>
+                          </Example>
+                          <Example type="dont" caption="No! This Action Icon has no title or aria-label">
+                            <ActionIcon variant="filled"><IconFilter size={16} /></ActionIcon>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="variants">
+                    <Accordion.Control><Title order={4}>Variants</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Use <Text component="span" fw={600}>filled</Text> for primary or prominent actions, <Text component="span" fw={600}>subtle</Text> for secondary actions, and <Text component="span" fw={600}>transparent</Text> for de-emphasized actions. Match the variant hierarchy to the Buttons section for consistency.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Filled variant for a primary action">
+                            <ActionIcon aria-label="Delete" title="Delete" variant="filled" color="red"><IconTrash size={16} /></ActionIcon>
+                          </Example>
+                          <Example type="dont" caption="No! Subtle variant underplays a primary action">
+                            <ActionIcon aria-label="Delete" title="Delete" variant="subtle" color="red"><IconTrash size={16} /></ActionIcon>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="size">
+                    <Accordion.Control><Title order={4}>Size</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Default to size <Text component="span" fw={600}>md</Text>. Size <Text component="span" fw={600}>sm</Text> may be used in dense contexts like tables or toolbars. Avoid <Text component="span" fw={600}>xs</Text> or <Text component="span" fw={600}>xl</Text> without a specific reason.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Default md size">
+                            <ActionIcon aria-label="Settings" title="Settings" variant="filled" size="md"><IconSettings size={16} /></ActionIcon>
+                          </Example>
+                          <Example type="dont" caption="No! Unnecessarily large xl size">
+                            <ActionIcon aria-label="Settings" title="Settings" variant="filled" size="xl"><IconSettings size={20} /></ActionIcon>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="grouping">
+                    <Accordion.Control><Title order={4}>Grouping</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>When displaying multiple Action Icons together, use consistent spacing and keep variants uniform within the group. If more than ~4 icons are needed, consider a dropdown menu instead.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Consistent variants and spacing">
+                            <Group gap="xs">
+                              <ActionIcon aria-label="Settings" title="Settings" variant="subtle"><IconSettings size={16} /></ActionIcon>
+                              <ActionIcon aria-label="Filter" title="Filter" variant="subtle"><IconFilter size={16} /></ActionIcon>
+                              <ActionIcon aria-label="Delete" title="Delete" variant="subtle" color="red"><IconTrash size={16} /></ActionIcon>
+                            </Group>
+                          </Example>
+                          <Example type="dont" caption="No! Mixed variants within a group">
+                            <Group gap="xs">
+                              <ActionIcon aria-label="Settings" title="Settings" variant="filled"><IconSettings size={16} /></ActionIcon>
+                              <ActionIcon aria-label="Filter" title="Filter" variant="subtle"><IconFilter size={16} /></ActionIcon>
+                              <ActionIcon aria-label="Delete" title="Delete" variant="transparent" color="red"><IconTrash size={16} /></ActionIcon>
+                            </Group>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                </Accordion>
               </Stack>
             )}
             {active === 'Badge' && (
@@ -473,7 +569,7 @@ function App() {
                             <Badge variant="filled">Status: Active</Badge>
                           </Example>
                         </ExampleSection>
-                        <Space h="L" />
+                        <Space h="l" />
                         <Text>When badges are used to display status, use the Filled variant. Do not include a close button. Use the the correct semantic color, if applicable.</Text>
                         <ExampleSection cols={2}>
                           <Example type="do" caption="Yes! Semantic color use, no close button">
@@ -556,6 +652,7 @@ function App() {
             {active === 'Modal' && (
               <>
                 <WIPBanner />
+                <Text>A Modal displays content that temporarily blocks interactions with the main view of a site.</Text>
                 <Modal opened={modalOpen} onClose={() => setModalOpen(false)} title="This is a Modal!">
                   <Text>This is placeholder modal content! :)</Text>
                 </Modal>
