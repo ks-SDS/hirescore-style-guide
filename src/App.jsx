@@ -24,6 +24,9 @@ import {
   Group,
   Image,
   NumberInput,
+  Breadcrumbs,
+  Anchor,
+  Tooltip,
 } from "@mantine/core";
 import { useState } from "react";
 import textInputExample from './assets/textInputExample.png'
@@ -76,10 +79,14 @@ const sections = [
     children: [
       "Action Icon",
       "Badge",
+      "Breadcrumbs",
       "Buttons",
+      "Notification",
+      "Pagination",
       "Text Input",
       "Loader",
       "Modal",
+      "Tooltip",
     ],
   },
   {
@@ -1614,6 +1621,178 @@ function App() {
                             <Button onClick={() => setContentDontOpen(true)}>Open Settings</Button>
                           </Example>
                         </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                </Accordion>
+              </Stack>
+            )}
+            {/* BREADCRUMBS */}
+            {active === "Breadcrumbs" && (
+              <Stack gap="lg">
+                <WIPBanner />
+                <Text>Breadcrumbs show the user's current location within the site hierarchy and allow them to navigate back to parent pages.</Text>
+                <Accordion multiple defaultValue={['when-to-use', 'content', 'behavior']}>
+                  <Accordion.Item value="when-to-use">
+                    <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add when-to-use guidance here.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Placeholder correct usage">
+                            <Breadcrumbs>
+                              {['Home', 'Assessments', 'Edit'].map((item, i) => <Anchor key={i} size="sm">{item}</Anchor>)}
+                            </Breadcrumbs>
+                          </Example>
+                          <Example type="dont" caption="No! Placeholder incorrect usage">
+                            <Breadcrumbs>
+                              {['Home', 'Assessments', 'Edit'].map((item, i) => <Anchor key={i} size="sm">{item}</Anchor>)}
+                            </Breadcrumbs>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="content">
+                    <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add content guidance here.</Text>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="behavior">
+                    <Accordion.Control><Title order={4}>Behavior</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add behavior guidance here.</Text>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                </Accordion>
+              </Stack>
+            )}
+            {/* NOTIFICATION */}
+            {active === "Notification" && (
+              <Stack gap="lg">
+                <WIPBanner />
+                <Text>Notifications provide brief, non-blocking feedback to the user about the result of an action.</Text>
+                <Accordion multiple defaultValue={['when-to-use', 'variants', 'content']}>
+                  <Accordion.Item value="when-to-use">
+                    <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add when-to-use guidance here.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Placeholder correct usage">
+                            <Notification title="Success" color="teal" withCloseButton={false}>Your changes have been saved.</Notification>
+                          </Example>
+                          <Example type="dont" caption="No! Placeholder incorrect usage">
+                            <Notification title="Success" color="teal" withCloseButton={false}>Your changes have been saved.</Notification>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="variants">
+                    <Accordion.Control><Title order={4}>Variants</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add variants guidance here.</Text>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="content">
+                    <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add content guidance here.</Text>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                </Accordion>
+              </Stack>
+            )}
+            {/* PAGINATION */}
+            {active === "Pagination" && (
+              <Stack gap="lg">
+                <WIPBanner />
+                <Text>Pagination allows users to navigate through multi-page content in a structured way.</Text>
+                <Accordion multiple defaultValue={['when-to-use', 'placement', 'behavior']}>
+                  <Accordion.Item value="when-to-use">
+                    <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add when-to-use guidance here.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Placeholder correct usage">
+                            <Pagination total={5} />
+                          </Example>
+                          <Example type="dont" caption="No! Placeholder incorrect usage">
+                            <Pagination total={5} />
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="placement">
+                    <Accordion.Control><Title order={4}>Placement</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add placement guidance here.</Text>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="behavior">
+                    <Accordion.Control><Title order={4}>Behavior</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add behavior guidance here.</Text>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                </Accordion>
+              </Stack>
+            )}
+            {/* TOOLTIP */}
+            {active === "Tooltip" && (
+              <Stack gap="lg">
+                <WIPBanner />
+                <Text>Tooltips display additional information when a user hovers over or focuses an element.</Text>
+                <Accordion multiple defaultValue={['when-to-use', 'content', 'placement']}>
+                  <Accordion.Item value="when-to-use">
+                    <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add when-to-use guidance here.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Placeholder correct usage">
+                            <Tooltip label="Tooltip text">
+                              <Button variant="subtle">Hover me</Button>
+                            </Tooltip>
+                          </Example>
+                          <Example type="dont" caption="No! Placeholder incorrect usage">
+                            <Tooltip label="Tooltip text">
+                              <Button variant="subtle">Hover me</Button>
+                            </Tooltip>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="content">
+                    <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add content guidance here.</Text>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="placement">
+                    <Accordion.Control><Title order={4}>Placement</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Placeholder: add placement guidance here.</Text>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
