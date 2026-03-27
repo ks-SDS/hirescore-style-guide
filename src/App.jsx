@@ -16,7 +16,6 @@ import {
   Accordion,
   ActionIcon,
   Space,
-  Divider,
   Alert,
   Notification,
   Input,
@@ -24,6 +23,7 @@ import {
   Indicator,
   Group,
   Image,
+  NumberInput,
 } from "@mantine/core";
 import { useState } from "react";
 import textInputExample from './assets/textInputExample.png'
@@ -590,7 +590,8 @@ function App() {
   const [copied, setCopied] = useState(null);
   const [iconSearch, setIconSearch] = useState("");
   const [iconSortAsc, setIconSortAsc] = useState(true);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [contentDoOpen, setContentDoOpen] = useState(false);
+  const [contentDontOpen, setContentDontOpen] = useState(false);
 
   function copyName(name) {
     const reactName =
@@ -1501,25 +1502,12 @@ function App() {
               <Stack gap="lg">
                 <WIPBanner />
                 <Text>A Modal displays content that temporarily blocks interactions with the main view of a site. Modals are typically launched by clicking on a Button.</Text>
-                <Modal opened={modalOpen} onClose={() => setModalOpen(false)} title="Title Placeholder">
-                  <Text>Content placeholder</Text>
-                  <Group justify="flex-end" mt="md">
-                  </Group>
-                </Modal>
-                <Accordion multiple defaultValue={['when-to-use', 'title', 'content', 'actions', 'closing']}>
+                <Accordion multiple defaultValue={['when-to-use', 'title', 'content', 'actions', 'closing', 'examples']}>
                   <Accordion.Item value="when-to-use">
                     <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Use Modals for confirmations or forms that require the user's full attention before they can continue, eg confirming a destructive action or completing a short form. Do not use Modals for non-urgent information; use an inline alert or notification instead.</Text>
-                        <ExampleSection cols={2}>
-                          <Example type="do" caption="Yes! Bulk editing assessment scores is a good use case for a Modal">
-                            <Button onClick={() => setModalOpen(true)}>Edit Scores</Button>
-                          </Example>
-                          <Example type="dont" caption="No! Non-urgent info doesn't need to block the whole page">
-                            <Button color="blue" onClick={() => setModalOpen(true)}>View Tips</Button>
-                          </Example>
-                        </ExampleSection>
+                        <Text>Use Modals for confirmations or forms that require the user's full attention before they can continue, eg confirming a destructive action or completing a form field. Do not use Modals for non-urgent information; use an inline alert or notification instead.</Text>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
@@ -1527,31 +1515,82 @@ function App() {
                     <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>The modal title should describe the action or content specifically. Avoid vague titles like "Are you sure?" or "Confirm" — use the name of the action instead (e.g. "Delete Assessment", "Save Changes").</Text>
-                        <Text>Keep modal content minimal. If the content needs to scroll, it's likely too much — consider a dedicated page instead. Avoid nesting one modal inside another.</Text>
-                        
-                      </Stack>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                  <Accordion.Item value="actions">
-                    <Accordion.Control><Title order={4}>Actions</Title></Accordion.Control>
-                    <Accordion.Panel>
-                      <Stack gap="sm">
-                        <Text>Modals should always have a clear primary action and a way to dismiss. Label the primary action with the specific action — not just "OK" or "Confirm."</Text>
-                        <ExampleSection cols={2}>
-                          <Example type="do" caption={`Yes! "Delete" and "Cancel" are clear and specific`}>
-                            <Group gap="xs">
-                              <Button variant="subtle" color="gray">Cancel</Button>
-                              <Button color="red">Delete</Button>
+                        <Title order={5}>Focus</Title>
+                        <Text>Every element in a given modal should relate to a single task or decision. Avoid mixing unrelated actions or settings in the same modal. </Text>
+                        <Text>Include a short, descriptive title at the top of every modal so the user can understand its purpose. If any instructions or alert messages are included, make sure they are visible and obvious at the top of the modal.</Text>
+                        <Modal opened={contentDoOpen} onClose={() => setContentDoOpen(false)} title="" size="md" styles={{ body: { display: 'flex', flexDirection: 'column', maxHeight: '70vh', padding: 0 } }}>
+                          <Stack gap="sm" style={{ padding: '16px 16px 0' }}>
+                            <Title>Edit Scores</Title>
+                            <Alert icon={<IconInfoCircle size={22} />} color="blue">
+                              Any changes made here will update the scores immediately, even if you do not click "Finish"
+                            </Alert>
+                          </Stack>
+                          <Stack style={{ overflowY: 'auto', flex: 1, padding: '16px 16px 0' }}>
+                            <Stack gap="sm" style={{ border: '1px solid var(--mantine-color-gray-3)', borderRadius: 8, padding: 16 }}>
+                              <Group gap="sm">
+                                <div style={{ width: 28, height: 28, borderRadius: '50%', backgroundColor: 'var(--mantine-color-gray-2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                  <Text size="sm" fw={600}>1</Text>
+                                </div>
+                                <Text size="sm">Placeholder question</Text>
+                              </Group>
+                              <Group justify="flex-end"><Text size="sm" fw={700}>Score Values</Text></Group>
+                              <Group justify="space-between">
+                                <Text size="sm">True</Text>
+                                <NumberInput defaultValue={1} style={{ width: 90 }} />
+                              </Group>
+                              <Group justify="space-between">
+                                <Text size="sm">False</Text>
+                                <NumberInput defaultValue={0} style={{ width: 90 }} />
+                              </Group>
+                            </Stack>
+                            {[
+                              { n: 2, q: 'Placeholder question', options: ['Option A', 'Option B', 'Option C', 'Option D'] },
+                              { n: 3, q: 'Placeholder question', options: ['Option A', 'Option B', 'Option C', 'Option D'] },
+                              { n: 4, q: 'Placeholder question', options: ['Option A', 'Option B', 'Option C', 'Option D'] },
+                              { n: 5, q: 'Placeholder question', options: ['Option A', 'Option B', 'Option C', 'Option D'] },
+                            ].map(({ n, q, options }) => (
+                              <Stack key={n} gap="sm" style={{ border: '1px solid var(--mantine-color-gray-3)', borderRadius: 8, padding: 16 }}>
+                                <Group gap="sm">
+                                  <div style={{ width: 28, height: 28, borderRadius: '50%', backgroundColor: 'var(--mantine-color-gray-2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <Text size="sm" fw={600}>{n}</Text>
+                                  </div>
+                                  <Text size="sm">{q}</Text>
+                                </Group>
+                                <Group justify="flex-end"><Text size="sm" fw={700}>Score Values</Text></Group>
+                                {options.map(opt => (
+                                  <Group key={opt} justify="space-between">
+                                    <Text size="sm">{opt}</Text>
+                                    <NumberInput defaultValue={0} style={{ width: 90 }} />
+                                  </Group>
+                                ))}
+                              </Stack>
+                            ))}
+                          </Stack>
+                          <Group justify="flex-end" style={{ padding: '12px 16px', borderTop: '1px solid var(--mantine-color-gray-3)' }}>
+                            <Button color="blue" onClick={() => setContentDoOpen(false)}>Finish</Button>
+                          </Group>
+                        </Modal>
+                        <Modal opened={contentDontOpen} onClose={() => setContentDontOpen(false)} title="Settings" closeOnClickOutside={false} withCloseButton={false}>
+                          <Stack gap="sm">
+                            <TextInput label="Display Name" />
+                            <TextInput label="Email Address" />
+                            <TextInput label="Password" />
+                            <TextInput label="Default Time Limit (minutes)" />
+                            <TextInput label="Max Attempts" />
+                            <TextInput label="Notify me when a candidate completes an assessment" />
+                            <TextInput label="Daily digest email time" placeholder="e.g. 8:00 AM" />
+                            <TextInput label="Theme" placeholder="e.g. Light, Dark" />
+                            <TextInput label="Language" placeholder="e.g. English" />
+                            <TextInput label="Timezone" />
+                            <Button color="red" variant="outline" fullWidth>Delete My Account</Button>
+                            <Group justify="flex-end" mt="sm">
+                              <Button onClick={() => setContentDontOpen(false)}>Save</Button>
                             </Group>
-                          </Example>
-                          <Example type="dont" caption={`No! "OK" gives no information about what will happen`}>
-                            <Group gap="xs">
-                              <Button variant="subtle" color="gray">Cancel</Button>
-                              <Button>OK</Button>
-                            </Group>
-                          </Example>
-                        </ExampleSection>
+                          </Stack>
+                        </Modal>
+                        <Title order={5}>Length</Title>
+                        <Text>Long or scrolling modals are acceptable when the task genuinely requires it. If the modal scrolls, make sure the action buttons remain visible and sticky at the bottom. Use section headers or spacing to break up dense content so users aren't overwhelmed.</Text>
+                        <Text>If a modal feels overwhelming, consider whether the content can be organized into steps (a multi-step or wizard modal) rather than presenting everything at once.</Text>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
@@ -1559,7 +1598,22 @@ function App() {
                     <Accordion.Control><Title order={4}>Closing behavior</Title></Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Users can close a Modal via the X button, a Cancel button, or by clicking the overlay. Do not disable overlay-click-to-close unless losing unsaved work is a genuine risk.</Text>
+                        <Text>Users should be able to close a Modal via the X button, a Cancel button, or by clicking the overlay. Do not disable overlay-click-to-close unless losing unsaved work is a genuine risk.</Text>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="examples">
+                    <Accordion.Control><Title order={4}>Examples</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! This modal covers a single task, is clearly labeled, displays the action button separate from the scrollable area, and can be closed by clicking the overlay area.">
+                            <Button color="blue" onClick={() => setContentDoOpen(true)}>Edit Scores</Button>
+                          </Example>
+                          <Example type="dont" caption="No! Account settings, assessment defaults, and notifications are not related and should not share a modal. Users should be able to close most modals without saving.">
+                            <Button onClick={() => setContentDontOpen(true)}>Open Settings</Button>
+                          </Example>
+                        </ExampleSection>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
@@ -1626,7 +1680,7 @@ function App() {
             {active === "Create/Edit Assessment" && (
               <Stack gap="lg">
                 <WIPBanner />
-                <Text>Placeholder: add Create/Edit Assessment guidelines here.</Text>
+                <Text>Create/Edit Assessment refers to the page PMs and Admins see when editing AP assessments.</Text>
               </Stack>
             )}
             {active === "Candidate Perspective" && (
