@@ -82,6 +82,10 @@ const sections = [
       "Modal",
     ],
   },
+  {
+    label: "Assessment Platform",
+    children: ["Create/Edit Assessment", "Candidate Perspective"],
+  },
 ];
 
 const colorData = [
@@ -1494,21 +1498,73 @@ function App() {
             )}
             {/* MODALS */}
             {active === "Modal" && (
-              <>
+              <Stack gap="lg">
                 <WIPBanner />
-                <Text>
-                  A Modal displays content that temporarily blocks interactions
-                  with the main view of a site.
-                </Text>
-                <Modal
-                  opened={modalOpen}
-                  onClose={() => setModalOpen(false)}
-                  title="This is a Modal!"
-                >
-                  <Text>This is placeholder modal content! :^)</Text>
+                <Text>A Modal displays content that temporarily blocks interactions with the main view of a site. Modals are typically launched by clicking on a Button.</Text>
+                <Modal opened={modalOpen} onClose={() => setModalOpen(false)} title="Title Placeholder">
+                  <Text>Content placeholder</Text>
+                  <Group justify="flex-end" mt="md">
+                  </Group>
                 </Modal>
-                <Button onClick={() => setModalOpen(true)}>Open Modal</Button>
-              </>
+                <Accordion multiple defaultValue={['when-to-use', 'title', 'content', 'actions', 'closing']}>
+                  <Accordion.Item value="when-to-use">
+                    <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Use Modals for confirmations or forms that require the user's full attention before they can continue, eg confirming a destructive action or completing a short form. Do not use Modals for non-urgent information; use an inline alert or notification instead.</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption="Yes! Bulk editing assessment scores is a good use case for a Modal">
+                            <Button onClick={() => setModalOpen(true)}>Edit Scores</Button>
+                          </Example>
+                          <Example type="dont" caption="No! Non-urgent info doesn't need to block the whole page">
+                            <Button color="blue" onClick={() => setModalOpen(true)}>View Tips</Button>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="content">
+                    <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>The modal title should describe the action or content specifically. Avoid vague titles like "Are you sure?" or "Confirm" — use the name of the action instead (e.g. "Delete Assessment", "Save Changes").</Text>
+                        <Text>Keep modal content minimal. If the content needs to scroll, it's likely too much — consider a dedicated page instead. Avoid nesting one modal inside another.</Text>
+                        
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="actions">
+                    <Accordion.Control><Title order={4}>Actions</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Modals should always have a clear primary action and a way to dismiss. Label the primary action with the specific action — not just "OK" or "Confirm."</Text>
+                        <ExampleSection cols={2}>
+                          <Example type="do" caption={`Yes! "Delete" and "Cancel" are clear and specific`}>
+                            <Group gap="xs">
+                              <Button variant="subtle" color="gray">Cancel</Button>
+                              <Button color="red">Delete</Button>
+                            </Group>
+                          </Example>
+                          <Example type="dont" caption={`No! "OK" gives no information about what will happen`}>
+                            <Group gap="xs">
+                              <Button variant="subtle" color="gray">Cancel</Button>
+                              <Button>OK</Button>
+                            </Group>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="closing">
+                    <Accordion.Control><Title order={4}>Closing behavior</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Users can close a Modal via the X button, a Cancel button, or by clicking the overlay. Do not disable overlay-click-to-close unless losing unsaved work is a genuine risk.</Text>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                </Accordion>
+              </Stack>
             )}
             {/* ICONS */}
             {active === "Icons" && (
@@ -1565,6 +1621,18 @@ function App() {
                       ))}
                   </Table.Tbody>
                 </Table>
+              </Stack>
+            )}
+            {active === "Create/Edit Assessment" && (
+              <Stack gap="lg">
+                <WIPBanner />
+                <Text>Placeholder: add Create/Edit Assessment guidelines here.</Text>
+              </Stack>
+            )}
+            {active === "Candidate Perspective" && (
+              <Stack gap="lg">
+                <WIPBanner />
+                <Text>Candidate Perspective refers to the side of Assessment Platform job candidates see when filling applications and completing assessments.</Text>
               </Stack>
             )}
           </Stack>
