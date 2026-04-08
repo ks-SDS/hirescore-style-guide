@@ -1511,7 +1511,6 @@ function App() {
             {/* MODALS */}
             {active === "Modal" && (
               <Stack gap="lg">
-                <WIPBanner />
                 <Text>A Modal displays content that temporarily blocks interactions with the main view of a site. Modals are typically launched by clicking on a Button.</Text>
                 <Accordion multiple defaultValue={['when-to-use', 'title', 'content', 'actions', 'closing', 'examples']}>
                   <Accordion.Item value="when-to-use">
