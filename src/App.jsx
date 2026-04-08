@@ -27,6 +27,7 @@ import {
   Breadcrumbs,
   Anchor,
   Tooltip,
+  Select,
 } from "@mantine/core";
 import { useState } from "react";
 import textInputExample from './assets/textInputExample.png'
@@ -599,6 +600,9 @@ function App() {
   const [iconSortAsc, setIconSortAsc] = useState(true);
   const [contentDoOpen, setContentDoOpen] = useState(false);
   const [contentDontOpen, setContentDontOpen] = useState(false);
+  const [paginationPage, setPaginationPage] = useState(1);
+  const [paginationRows, setPaginationRows] = useState('100');
+  const totalRows = 2562;
 
   function copyName(name) {
     const reactName =
@@ -1597,7 +1601,7 @@ function App() {
                         </Modal>
                         <Title order={5}>Length</Title>
                         <Text>Long or scrolling modals are acceptable when the task genuinely requires it. If the modal scrolls, make sure the action buttons remain visible and sticky at the bottom. Use section headers or spacing to break up dense content so users aren't overwhelmed.</Text>
-                        <Text>If a modal feels overwhelming, consider whether the content can be organized into steps (a multi-step or wizard modal) rather than presenting everything at once.</Text>
+                        <Text>If a modal feels overwhelming, consider whether the content can be organized into steps (a multi-step modal) rather than presenting everything at once.</Text>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
@@ -1697,44 +1701,29 @@ function App() {
             )}
             {/* PAGINATION */}
             {active === "Pagination" && (
-              <Stack gap="lg">
-                <WIPBanner />
-                <Text>Pagination allows users to navigate through multi-page content in a structured way.</Text>
-                <Accordion multiple defaultValue={['when-to-use', 'placement', 'behavior']}>
-                  <Accordion.Item value="when-to-use">
-                    <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
-                    <Accordion.Panel>
-                      <Stack gap="sm">
-                        <Text>Placeholder: add when-to-use guidance here.</Text>
-                        <ExampleSection cols={2}>
-                          <Example type="do" caption="Yes! Placeholder correct usage">
-                            <Pagination total={5} />
-                          </Example>
-                          <Example type="dont" caption="No! Placeholder incorrect usage">
-                            <Pagination total={5} />
-                          </Example>
-                        </ExampleSection>
-                      </Stack>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                  <Accordion.Item value="placement">
-                    <Accordion.Control><Title order={4}>Placement</Title></Accordion.Control>
-                    <Accordion.Panel>
-                      <Stack gap="sm">
-                        <Text>Placeholder: add placement guidance here.</Text>
-                      </Stack>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                  <Accordion.Item value="behavior">
-                    <Accordion.Control><Title order={4}>Behavior</Title></Accordion.Control>
-                    <Accordion.Panel>
-                      <Stack gap="sm">
-                        <Text>Placeholder: add behavior guidance here.</Text>
-                      </Stack>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                </Accordion>
-              </Stack>
+              <>
+                <Text>Pagination allows users to navigate through multi-page content in a structured way. Use pagination to break up large amounts of dynamically-loaded content like tables.</Text>
+                <Text>Pagination should always use the default size and radius settings The active page should have 2 siblings. Include edges and a dropdown to choose the number of rows shown at a time. Include a badge that displays the total number of entries and which of them are being shown.</Text>
+                <ExampleSection cols={1}>
+                  <Example type="neutral">
+                    <Group justify="flex-start">
+                      <Badge variant="outline" color="gray" tt="uppercase" fw={700}>
+                        Showing {((paginationPage - 1) * parseInt(paginationRows) + 1).toLocaleString()}–{Math.min(paginationPage * parseInt(paginationRows), totalRows).toLocaleString()} of {totalRows.toLocaleString()}
+                      </Badge>
+                      <Pagination
+                        total={Math.ceil(totalRows / parseInt(paginationRows))}
+                        value={paginationPage}
+                        onChange={setPaginationPage}
+                        siblings={2}
+                        withEdges
+                      />
+                      <Tooltip label="Number of rows">
+                        <Select data={['20', '50', '100', '200', '500']} value={paginationRows} onChange={(v) => { setPaginationRows(v); setPaginationPage(1); }} w={80} />
+                      </Tooltip>
+                    </Group>
+                  </Example>
+                </ExampleSection>
+              </>
             )}
             {/* TOOLTIP */}
             {active === "Tooltip" && (
