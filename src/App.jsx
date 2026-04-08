@@ -1677,18 +1677,34 @@ function App() {
               <Stack gap="lg">
                 <WIPBanner />
                 <Text>Notifications provide brief, non-blocking feedback to the user about the result of an action.</Text>
-                <Accordion multiple defaultValue={['when-to-use', 'variants', 'content']}>
+                <Accordion multiple defaultValue={['when-to-use', 'content', 'variants']}>
                   <Accordion.Item value="when-to-use">
                     <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Placeholder: add when-to-use guidance here.</Text>
+                        <Text>Use Notifications to give users feedback after completing an action, whether it succeeded or failed. They're also appropriate for background system events that the user should be aware of but doesn't need to act on immediately.</Text>
                         <ExampleSection cols={2}>
-                          <Example type="do" caption="Yes! Placeholder correct usage">
-                            <Notification title="Success" color="teal" withCloseButton={false}>Your changes have been saved.</Notification>
+                          <Example type="do" caption="Yes! Feedback confirming a user action was completed">
+                            <Notification title="Success" color="teal">Your changes have been saved.</Notification>
                           </Example>
-                          <Example type="dont" caption="No! Placeholder incorrect usage">
-                            <Notification title="Success" color="teal" withCloseButton={false}>Your changes have been saved.</Notification>
+                          <Example type="do" caption="Yes! Alerting a user to system events">
+                            <Notification title="Limited Search" color="orange">Find Candidates is popular right now! Search will be limited until 01-01-2050 00:00:00 PM.</Notification>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="content">
+                    <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>This component is for quick acknowledgement of actions. Notification content should be short and to the point. Do not use a Notification for critical information or anything a user may need to refer back to.</Text>
+                        <Text><Text component="span" fw={700}>Users should still be able to use a given feature or page even if they miss a notification.</Text> Never put information in a Notification that is required to complete a task.</Text>
+                        <ExampleSection cols={1}>
+                          <Example type="dont" caption="No! This notification contains critical instructions the user must follow— if they dismiss it or miss it, they're stuck">
+                            <Notification color="red" title="Action Required" withCloseButton={false}>
+                              Your assessment could not be submitted. To fix this, go to Settings &gt; Integrations &gt; ATS Sync, click "Re-authenticate," enter your API key, and re-submit the assessment. If the issue persists, contact support@hirescore.com with error code 4082.
+                            </Notification>
                           </Example>
                         </ExampleSection>
                       </Stack>
@@ -1698,15 +1714,12 @@ function App() {
                     <Accordion.Control><Title order={4}>Variants</Title></Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Placeholder: add variants guidance here.</Text>
-                      </Stack>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                  <Accordion.Item value="content">
-                    <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
-                    <Accordion.Panel>
-                      <Stack gap="sm">
-                        <Text>Placeholder: add content guidance here.</Text>
+                        <Text>The default style is acceptable to use everywhere. Make sure to use the appropriate Semantic Color for each notification. Do not add an Icon or a Loader to a Notification. Do not add a border.</Text>
+                        <ExampleSection cols={1}>
+                          <Example type="dont" caption="Notification with icon, incorrect color, and border">
+                            <Notification icon={<IconBell size={16} />} title="Error!" withBorder>Something went wrong. Unable to save changes</Notification>
+                          </Example>
+                        </ExampleSection>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
