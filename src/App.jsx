@@ -1675,7 +1675,6 @@ function App() {
             {/* NOTIFICATION */}
             {active === "Notification" && (
               <Stack gap="lg">
-                <WIPBanner />
                 <Text>Notifications provide brief, non-blocking feedback to the user about the result of an action.</Text>
                 <Accordion multiple defaultValue={['when-to-use', 'content', 'variants']}>
                   <Accordion.Item value="when-to-use">
