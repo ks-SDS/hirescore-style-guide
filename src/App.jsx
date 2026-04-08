@@ -1629,48 +1629,18 @@ function App() {
             )}
             {/* BREADCRUMBS */}
             {active === "Breadcrumbs" && (
-              <Stack gap="lg">
-                <WIPBanner />
+              <>
                 <Text>Breadcrumbs show the user's current location within the site hierarchy and allow them to navigate back to parent pages.</Text>
-                <Accordion multiple defaultValue={['when-to-use', 'content', 'behavior']}>
-                  <Accordion.Item value="when-to-use">
-                    <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
-                    <Accordion.Panel>
-                      <Stack gap="sm">
-                        <Text>Placeholder: add when-to-use guidance here.</Text>
-                        <ExampleSection cols={2}>
-                          <Example type="do" caption="Yes! Placeholder correct usage">
-                            <Breadcrumbs>
-                              {['Home', 'Assessments', 'Edit'].map((item, i) => <Anchor key={i} size="sm">{item}</Anchor>)}
-                            </Breadcrumbs>
-                          </Example>
-                          <Example type="dont" caption="No! Placeholder incorrect usage">
-                            <Breadcrumbs>
-                              {['Home', 'Assessments', 'Edit'].map((item, i) => <Anchor key={i} size="sm">{item}</Anchor>)}
-                            </Breadcrumbs>
-                          </Example>
-                        </ExampleSection>
-                      </Stack>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                  <Accordion.Item value="content">
-                    <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
-                    <Accordion.Panel>
-                      <Stack gap="sm">
-                        <Text>Placeholder: add content guidance here.</Text>
-                      </Stack>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                  <Accordion.Item value="behavior">
-                    <Accordion.Control><Title order={4}>Behavior</Title></Accordion.Control>
-                    <Accordion.Panel>
-                      <Stack gap="sm">
-                        <Text>Placeholder: add behavior guidance here.</Text>
-                      </Stack>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                </Accordion>
-              </Stack>
+                <Text>Breadcrumbs should be visible on every page, in the top navigation bar section.</Text>
+                <Text>They should always be gray, bold, extra-small text, all-caps, and concatenated with a &gt; character. Do not use underline or other text decorations.</Text>
+                <ExampleSection cols={1}>
+                  <Example type="do">
+                    <Breadcrumbs separator=">" styles={{ separator: { color: 'var(--mantine-color-gray-6)', fontWeight: 700 } }}>
+                      {['Build', 'Assessments', 'Media'].map((item, i) => <Anchor key={i} size="xs" c="gray" fw={700} tt="uppercase" underline="never">{item}</Anchor>)}
+                    </Breadcrumbs>
+                  </Example>
+                </ExampleSection>
+              </>
             )}
             {/* NOTIFICATION */}
             {active === "Notification" && (
