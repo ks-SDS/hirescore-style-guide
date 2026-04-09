@@ -30,7 +30,7 @@ import {
   Select,
 } from "@mantine/core";
 import { useState } from "react";
-import textInputExample from './assets/textInputExample.png'
+import textInputExample from "./assets/textInputExample.png";
 import {
   IconTrash,
   IconAffiliate,
@@ -601,7 +601,7 @@ function App() {
   const [contentDoOpen, setContentDoOpen] = useState(false);
   const [contentDontOpen, setContentDontOpen] = useState(false);
   const [paginationPage, setPaginationPage] = useState(1);
-  const [paginationRows, setPaginationRows] = useState('100');
+  const [paginationRows, setPaginationRows] = useState("100");
   const totalRows = 2562;
 
   function copyName(name) {
@@ -1380,9 +1380,20 @@ function App() {
               <Stack gap="lg">
                 <Text>
                   Inputs collect information from users. Text Inputs capture
-                  strings and are used all over the site for everything from search boxes to free-response assessment questions.
+                  strings and are used all over the site for everything from
+                  search boxes to free-response assessment questions.
                 </Text>
-                <Accordion multiple defaultValue={["labels", "descriptions", "asterisks", "error-messages", "placeholders", "exceptions"]}>
+                <Accordion
+                  multiple
+                  defaultValue={[
+                    "labels",
+                    "descriptions",
+                    "asterisks",
+                    "error-messages",
+                    "placeholders",
+                    "exceptions",
+                  ]}
+                >
                   <Accordion.Item value="labels">
                     <Accordion.Control>
                       <Title order={4}>Labels</Title>
@@ -1390,12 +1401,24 @@ function App() {
                     <Accordion.Panel>
                       <Stack gap="sm">
                         <Text>
-                          The label identifies what the field is asking for. It is displayed above the input, always visible, and read by screen readers. Labels should be used in most contexts — they help users visually identify what the input is for, and are critical for screen reader accessibility. Labels should be concise and specific.</Text>
+                          The label identifies what the field is asking for. It
+                          is displayed above the input, always visible, and read
+                          by screen readers. Labels should be used in most
+                          contexts — they help users visually identify what the
+                          input is for, and are critical for screen reader
+                          accessibility. Labels should be concise and specific.
+                        </Text>
                         <ExampleSection cols={2}>
-                          <Example type="do" caption="Yes! Input with a concise label">
+                          <Example
+                            type="do"
+                            caption="Yes! Input with a concise label"
+                          >
                             <TextInput label="Job Title" />
                           </Example>
-                          <Example type="dont" caption="No! Unnecessarily long label">
+                          <Example
+                            type="dont"
+                            caption="No! Unnecessarily long label"
+                          >
                             <TextInput label="Enter A Job Title Below:" />
                           </Example>
                         </ExampleSection>
@@ -1409,14 +1432,29 @@ function App() {
                     <Accordion.Panel>
                       <Stack gap="sm">
                         <Text>
-                          The description is optional supporting text below the label that provides context, constraints, or instructions. Use it when a concise label on its own isn't enough.
+                          The description is optional supporting text below the
+                          label that provides context, constraints, or
+                          instructions. Use it when a concise label on its own
+                          isn't enough.
                         </Text>
                         <ExampleSection cols={2}>
-                          <Example type="do" caption="The description adds useful context the label alone can't convey">
-                            <TextInput label="Degree Type" description="e.g. Associate, Bachelor's, etc" />
+                          <Example
+                            type="do"
+                            caption="The description adds useful context the label alone can't convey"
+                          >
+                            <TextInput
+                              label="Degree Type"
+                              description="e.g. Associate, Bachelor's, etc"
+                            />
                           </Example>
-                          <Example type="dont" caption="Don't use the description to repeat what the label already says">
-                            <TextInput label="Degree Type" description="Enter type of degree" />
+                          <Example
+                            type="dont"
+                            caption="Don't use the description to repeat what the label already says"
+                          >
+                            <TextInput
+                              label="Degree Type"
+                              description="Enter type of degree"
+                            />
                           </Example>
                         </ExampleSection>
                       </Stack>
@@ -1428,12 +1466,27 @@ function App() {
                     </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Use asterisks to mark a field as required. Required fields should be the exception, not the rule-- if most fields in a form are required, consider omitting the asterisk and noting which fields are <Text component="span" fs="italic">optional</Text> instead.</Text>
+                        <Text>
+                          Use asterisks to mark a field as required. Required
+                          fields should be the exception, not the rule-- if most
+                          fields in a form are required, consider omitting the
+                          asterisk and noting which fields are{" "}
+                          <Text component="span" fs="italic">
+                            optional
+                          </Text>{" "}
+                          instead.
+                        </Text>
                         <ExampleSection cols={2}>
-                          <Example type="do" caption="Required field clearly marked with an asterisk">
+                          <Example
+                            type="do"
+                            caption="Required field clearly marked with an asterisk"
+                          >
                             <TextInput label="Email Address" required />
                           </Example>
-                          <Example type="dont" caption="Don't mark every field as required — it loses meaning">
+                          <Example
+                            type="dont"
+                            caption="Don't mark every field as required — it loses meaning"
+                          >
                             <Stack gap="xs">
                               <TextInput label="First Name" required />
                               <TextInput label="Last Name" required />
@@ -1450,13 +1503,32 @@ function App() {
                     </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Errors display a validation message below the input. Error messages should be specific and actionable. Tell the user what went wrong and how to fix it. Avoid generic messages like "Invalid input."</Text>
+                        <Text>
+                          Errors display a validation message below the input.
+                          Error messages should be specific and actionable. Tell
+                          the user what went wrong and how to fix it. Avoid
+                          generic messages like "Invalid input."
+                        </Text>
                         <ExampleSection cols={2}>
-                          <Example type="do" caption="Specific error message that tells the user what to do">
-                            <TextInput label="Email Address" value="hfgisdufhudshf" error="Please enter a valid email address (e.g. name@example.com)" />
+                          <Example
+                            type="do"
+                            caption="Specific error message that tells the user what to do"
+                          >
+                            <TextInput
+                              label="Email Address"
+                              value="hfgisdufhudshf"
+                              error="Please enter a valid email address (e.g. name@example.com)"
+                            />
                           </Example>
-                          <Example type="dont" caption="Vague error message that doesn't help the user">
-                            <TextInput label="Email Address" value="hfgisdufhudshf" error="Invalid input" />
+                          <Example
+                            type="dont"
+                            caption="Vague error message that doesn't help the user"
+                          >
+                            <TextInput
+                              label="Email Address"
+                              value="hfgisdufhudshf"
+                              error="Invalid input"
+                            />
                           </Example>
                         </ExampleSection>
                       </Stack>
@@ -1469,13 +1541,27 @@ function App() {
                     <Accordion.Panel>
                       <Stack gap="sm">
                         <Text>
-                          Placeholder text is shown inside the input when it's empty and disappears as soon as the user starts typing. It should not carry information the user needs to complete the field (use a description for that). Placeholders are best used for showing format examples.
+                          Placeholder text is shown inside the input when it's
+                          empty and disappears as soon as the user starts
+                          typing. It should not carry information the user needs
+                          to complete the field (use a description for that).
+                          Placeholders are best used for showing format
+                          examples.
                         </Text>
                         <ExampleSection>
-                          <Example type="do" caption="Yes! Placeholder indicating the expected format">
-                            <TextInput label="Phone Number" placeholder="(XXX)XXX-XXXX" />
+                          <Example
+                            type="do"
+                            caption="Yes! Placeholder indicating the expected format"
+                          >
+                            <TextInput
+                              label="Phone Number"
+                              placeholder="(XXX)XXX-XXXX"
+                            />
                           </Example>
-                          <Example type="dont" caption="No! The placeholder is not a substitute for a label">
+                          <Example
+                            type="dont"
+                            caption="No! The placeholder is not a substitute for a label"
+                          >
                             <TextInput placeholder="Phone Number" />
                           </Example>
                         </ExampleSection>
@@ -1487,22 +1573,36 @@ function App() {
                       <Title order={4}>Exceptions</Title>
                     </Accordion.Control>
                     <Accordion.Panel>
-                      <Stack gap="sm">
-                      </Stack>
+                      <Stack gap="sm"></Stack>
                       <Text>
-                          Because they're used for so many things in so many places, there are some contexts where Text Inputs can break the above rules. An input without a visible label is acceptable if its purpose is clearly communicated another way.
-                        </Text>
-                        <ExampleSection cols={2}>
-                          <Example type="do" caption="Text Input with an icon and placeholder indicating its purpose. Note that the placeholder text disappears as soon as you start typing, but the icon is persistent">
-                            <TextInput leftSection={<IconSearch size={16} />} placeholder="Search" />
-                          </Example>
-                          <Example
+                        Because they're used for so many things in so many
+                        places, there are some contexts where Text Inputs can
+                        break the above rules. An input without a visible label
+                        is acceptable if its purpose is clearly communicated
+                        another way.
+                      </Text>
+                      <ExampleSection cols={2}>
+                        <Example
+                          type="do"
+                          caption="Text Input with an icon and placeholder indicating its purpose. Note that the placeholder text disappears as soon as you start typing, but the icon is persistent"
+                        >
+                          <TextInput
+                            leftSection={<IconSearch size={16} />}
+                            placeholder="Search"
+                          />
+                        </Example>
+                        <Example
                           type="do"
                           caption="This assessment question does not have a label, but the question stem above the input serves the same purpose."
-                          >
-                            <Image src={textInputExample} alt="Text input example" h="auto" fit="contain" />
-                          </Example>
-                        </ExampleSection>
+                        >
+                          <Image
+                            src={textInputExample}
+                            alt="Text input example"
+                            h="auto"
+                            fit="contain"
+                          />
+                        </Example>
+                      </ExampleSection>
                     </Accordion.Panel>
                   </Accordion.Item>
                 </Accordion>
@@ -1511,76 +1611,245 @@ function App() {
             {/* MODALS */}
             {active === "Modal" && (
               <Stack gap="lg">
-                <Text>A Modal displays content that temporarily blocks interactions with the main view of a site. Modals are typically launched by clicking on a Button.</Text>
-                <Accordion multiple defaultValue={['when-to-use', 'title', 'content', 'actions', 'closing', 'examples']}>
+                <Text>
+                  A Modal displays content that temporarily blocks interactions
+                  with the main view of a site. Modals are typically launched by
+                  clicking on a Button.
+                </Text>
+                <Accordion
+                  multiple
+                  defaultValue={[
+                    "when-to-use",
+                    "title",
+                    "content",
+                    "actions",
+                    "closing",
+                    "examples",
+                  ]}
+                >
                   <Accordion.Item value="when-to-use">
-                    <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
+                    <Accordion.Control>
+                      <Title order={4}>When to use</Title>
+                    </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Use Modals for confirmations or forms that require the user's full attention before they can continue, eg confirming a destructive action or completing a form field. Do not use Modals for non-urgent information; use an inline alert or notification instead.</Text>
+                        <Text>
+                          Use Modals for confirmations or forms that require the
+                          user's full attention before they can continue, eg
+                          confirming a destructive action or completing a form
+                          field. Do not use Modals for non-urgent information;
+                          use an inline alert or notification instead.
+                        </Text>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="content">
-                    <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
+                    <Accordion.Control>
+                      <Title order={4}>Content</Title>
+                    </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
                         <Title order={5}>Focus</Title>
-                        <Text>Every element in a given modal should relate to a single task or decision. Avoid mixing unrelated actions or settings in the same modal. </Text>
-                        <Text>Include a short, descriptive title at the top of every modal so the user can understand its purpose. If any instructions or alert messages are included, make sure they are visible and obvious at the top of the modal.</Text>
-                        <Modal opened={contentDoOpen} onClose={() => setContentDoOpen(false)} title="" size="md" styles={{ body: { display: 'flex', flexDirection: 'column', maxHeight: '70vh', padding: 0 } }}>
-                          <Stack gap="sm" style={{ padding: '16px 16px 0' }}>
+                        <Text>
+                          Every element in a given modal should relate to a
+                          single task or decision. Avoid mixing unrelated
+                          actions or settings in the same modal.{" "}
+                        </Text>
+                        <Text>
+                          Include a short, descriptive title at the top of every
+                          modal so the user can understand its purpose. If any
+                          instructions or alert messages are included, make sure
+                          they are visible and obvious at the top of the modal.
+                        </Text>
+                        <Modal
+                          opened={contentDoOpen}
+                          onClose={() => setContentDoOpen(false)}
+                          title=""
+                          size="md"
+                          styles={{
+                            body: {
+                              display: "flex",
+                              flexDirection: "column",
+                              maxHeight: "70vh",
+                              padding: 0,
+                            },
+                          }}
+                        >
+                          <Stack gap="sm" style={{ padding: "16px 16px 0" }}>
                             <Title>Edit Scores</Title>
-                            <Alert icon={<IconInfoCircle size={22} />} color="blue">
-                              Any changes made here will update the scores immediately, even if you do not click "Finish"
+                            <Alert
+                              icon={<IconInfoCircle size={22} />}
+                              color="blue"
+                            >
+                              Any changes made here will update the scores
+                              immediately, even if you do not click "Finish"
                             </Alert>
                           </Stack>
-                          <Stack style={{ overflowY: 'auto', flex: 1, padding: '16px 16px 0' }}>
-                            <Stack gap="sm" style={{ border: '1px solid var(--mantine-color-gray-3)', borderRadius: 8, padding: 16 }}>
+                          <Stack
+                            style={{
+                              overflowY: "auto",
+                              flex: 1,
+                              padding: "16px 16px 0",
+                            }}
+                          >
+                            <Stack
+                              gap="sm"
+                              style={{
+                                border: "1px solid var(--mantine-color-gray-3)",
+                                borderRadius: 8,
+                                padding: 16,
+                              }}
+                            >
                               <Group gap="sm">
-                                <div style={{ width: 28, height: 28, borderRadius: '50%', backgroundColor: 'var(--mantine-color-gray-2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                  <Text size="sm" fw={600}>1</Text>
+                                <div
+                                  style={{
+                                    width: 28,
+                                    height: 28,
+                                    borderRadius: "50%",
+                                    backgroundColor:
+                                      "var(--mantine-color-gray-2)",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                  }}
+                                >
+                                  <Text size="sm" fw={600}>
+                                    1
+                                  </Text>
                                 </div>
                                 <Text size="sm">Placeholder question</Text>
                               </Group>
-                              <Group justify="flex-end"><Text size="sm" fw={700}>Score Values</Text></Group>
+                              <Group justify="flex-end">
+                                <Text size="sm" fw={700}>
+                                  Score Values
+                                </Text>
+                              </Group>
                               <Group justify="space-between">
                                 <Text size="sm">True</Text>
-                                <NumberInput defaultValue={1} style={{ width: 90 }} />
+                                <NumberInput
+                                  defaultValue={1}
+                                  style={{ width: 90 }}
+                                />
                               </Group>
                               <Group justify="space-between">
                                 <Text size="sm">False</Text>
-                                <NumberInput defaultValue={0} style={{ width: 90 }} />
+                                <NumberInput
+                                  defaultValue={0}
+                                  style={{ width: 90 }}
+                                />
                               </Group>
                             </Stack>
                             {[
-                              { n: 2, q: 'Placeholder question', options: ['Option A', 'Option B', 'Option C', 'Option D'] },
-                              { n: 3, q: 'Placeholder question', options: ['Option A', 'Option B', 'Option C', 'Option D'] },
-                              { n: 4, q: 'Placeholder question', options: ['Option A', 'Option B', 'Option C', 'Option D'] },
-                              { n: 5, q: 'Placeholder question', options: ['Option A', 'Option B', 'Option C', 'Option D'] },
+                              {
+                                n: 2,
+                                q: "Placeholder question",
+                                options: [
+                                  "Option A",
+                                  "Option B",
+                                  "Option C",
+                                  "Option D",
+                                ],
+                              },
+                              {
+                                n: 3,
+                                q: "Placeholder question",
+                                options: [
+                                  "Option A",
+                                  "Option B",
+                                  "Option C",
+                                  "Option D",
+                                ],
+                              },
+                              {
+                                n: 4,
+                                q: "Placeholder question",
+                                options: [
+                                  "Option A",
+                                  "Option B",
+                                  "Option C",
+                                  "Option D",
+                                ],
+                              },
+                              {
+                                n: 5,
+                                q: "Placeholder question",
+                                options: [
+                                  "Option A",
+                                  "Option B",
+                                  "Option C",
+                                  "Option D",
+                                ],
+                              },
                             ].map(({ n, q, options }) => (
-                              <Stack key={n} gap="sm" style={{ border: '1px solid var(--mantine-color-gray-3)', borderRadius: 8, padding: 16 }}>
+                              <Stack
+                                key={n}
+                                gap="sm"
+                                style={{
+                                  border:
+                                    "1px solid var(--mantine-color-gray-3)",
+                                  borderRadius: 8,
+                                  padding: 16,
+                                }}
+                              >
                                 <Group gap="sm">
-                                  <div style={{ width: 28, height: 28, borderRadius: '50%', backgroundColor: 'var(--mantine-color-gray-2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <Text size="sm" fw={600}>{n}</Text>
+                                  <div
+                                    style={{
+                                      width: 28,
+                                      height: 28,
+                                      borderRadius: "50%",
+                                      backgroundColor:
+                                        "var(--mantine-color-gray-2)",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                    }}
+                                  >
+                                    <Text size="sm" fw={600}>
+                                      {n}
+                                    </Text>
                                   </div>
                                   <Text size="sm">{q}</Text>
                                 </Group>
-                                <Group justify="flex-end"><Text size="sm" fw={700}>Score Values</Text></Group>
-                                {options.map(opt => (
+                                <Group justify="flex-end">
+                                  <Text size="sm" fw={700}>
+                                    Score Values
+                                  </Text>
+                                </Group>
+                                {options.map((opt) => (
                                   <Group key={opt} justify="space-between">
                                     <Text size="sm">{opt}</Text>
-                                    <NumberInput defaultValue={0} style={{ width: 90 }} />
+                                    <NumberInput
+                                      defaultValue={0}
+                                      style={{ width: 90 }}
+                                    />
                                   </Group>
                                 ))}
                               </Stack>
                             ))}
                           </Stack>
-                          <Group justify="flex-end" style={{ padding: '12px 16px', borderTop: '1px solid var(--mantine-color-gray-3)' }}>
-                            <Button color="blue" onClick={() => setContentDoOpen(false)}>Finish</Button>
+                          <Group
+                            justify="flex-end"
+                            style={{
+                              padding: "12px 16px",
+                              borderTop:
+                                "1px solid var(--mantine-color-gray-3)",
+                            }}
+                          >
+                            <Button
+                              color="blue"
+                              onClick={() => setContentDoOpen(false)}
+                            >
+                              Finish
+                            </Button>
                           </Group>
                         </Modal>
-                        <Modal opened={contentDontOpen} onClose={() => setContentDontOpen(false)} title="Settings" closeOnClickOutside={false} withCloseButton={false}>
+                        <Modal
+                          opened={contentDontOpen}
+                          onClose={() => setContentDontOpen(false)}
+                          title="Settings"
+                          closeOnClickOutside={false}
+                          withCloseButton={false}
+                        >
                           <Stack gap="sm">
                             <TextInput label="Display Name" />
                             <TextInput label="Email Address" />
@@ -1588,40 +1857,85 @@ function App() {
                             <TextInput label="Default Time Limit (minutes)" />
                             <TextInput label="Max Attempts" />
                             <TextInput label="Notify me when a candidate completes an assessment" />
-                            <TextInput label="Daily digest email time" placeholder="e.g. 8:00 AM" />
-                            <TextInput label="Theme" placeholder="e.g. Light, Dark" />
-                            <TextInput label="Language" placeholder="e.g. English" />
+                            <TextInput
+                              label="Daily digest email time"
+                              placeholder="e.g. 8:00 AM"
+                            />
+                            <TextInput
+                              label="Theme"
+                              placeholder="e.g. Light, Dark"
+                            />
+                            <TextInput
+                              label="Language"
+                              placeholder="e.g. English"
+                            />
                             <TextInput label="Timezone" />
-                            <Button color="red" variant="outline" fullWidth>Delete My Account</Button>
+                            <Button color="red" variant="outline" fullWidth>
+                              Delete My Account
+                            </Button>
                             <Group justify="flex-end" mt="sm">
-                              <Button onClick={() => setContentDontOpen(false)}>Save</Button>
+                              <Button onClick={() => setContentDontOpen(false)}>
+                                Save
+                              </Button>
                             </Group>
                           </Stack>
                         </Modal>
                         <Title order={5}>Length</Title>
-                        <Text>Long or scrolling modals are acceptable when the task genuinely requires it. If the modal scrolls, make sure the action buttons remain visible and sticky at the bottom. Use section headers or spacing to break up dense content so users aren't overwhelmed.</Text>
-                        <Text>If a modal feels overwhelming, consider whether the content can be organized into steps (a multi-step modal) rather than presenting everything at once.</Text>
+                        <Text>
+                          Long or scrolling modals are acceptable when the task
+                          genuinely requires it. If the modal scrolls, make sure
+                          the action buttons remain visible and sticky at the
+                          bottom. Use section headers or spacing to break up
+                          dense content so users aren't overwhelmed.
+                        </Text>
+                        <Text>
+                          If a modal feels overwhelming, consider whether the
+                          content can be organized into steps (a multi-step
+                          modal) rather than presenting everything at once.
+                        </Text>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="closing">
-                    <Accordion.Control><Title order={4}>Closing behavior</Title></Accordion.Control>
+                    <Accordion.Control>
+                      <Title order={4}>Closing behavior</Title>
+                    </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Users should be able to close a Modal via the X button, a Cancel button, or by clicking the overlay. Do not disable overlay-click-to-close unless losing unsaved work is a genuine risk.</Text>
+                        <Text>
+                          Users should be able to close a Modal via the X
+                          button, a Cancel button, or by clicking the overlay.
+                          Do not disable overlay-click-to-close unless losing
+                          unsaved work is a genuine risk.
+                        </Text>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="examples">
-                    <Accordion.Control><Title order={4}>Examples</Title></Accordion.Control>
+                    <Accordion.Control>
+                      <Title order={4}>Examples</Title>
+                    </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
                         <ExampleSection cols={2}>
-                          <Example type="do" caption="Yes! This modal covers a single task, is clearly labeled, displays the action button separate from the scrollable area, and can be closed by clicking the overlay area.">
-                            <Button color="blue" onClick={() => setContentDoOpen(true)}>Edit Scores</Button>
+                          <Example
+                            type="do"
+                            caption="Yes! This modal covers a single task, is clearly labeled, displays the action button separate from the scrollable area, and can be closed by clicking the overlay area."
+                          >
+                            <Button
+                              color="blue"
+                              onClick={() => setContentDoOpen(true)}
+                            >
+                              Edit Scores
+                            </Button>
                           </Example>
-                          <Example type="dont" caption="No! Account settings, assessment defaults, and notifications are not related and should not share a modal. Users should be able to close most modals without saving.">
-                            <Button onClick={() => setContentDontOpen(true)}>Open Settings</Button>
+                          <Example
+                            type="dont"
+                            caption="No! Account settings, assessment defaults, and notifications are not related and should not share a modal. Users should be able to close most modals without saving."
+                          >
+                            <Button onClick={() => setContentDontOpen(true)}>
+                              Open Settings
+                            </Button>
                           </Example>
                         </ExampleSection>
                       </Stack>
@@ -1633,13 +1947,42 @@ function App() {
             {/* BREADCRUMBS */}
             {active === "Breadcrumbs" && (
               <>
-                <Text>Breadcrumbs show the user's current location within the site hierarchy and allow them to navigate back to parent pages.</Text>
-                <Text>Breadcrumbs should be visible on every page, in the top navigation bar section.</Text>
-                <Text>They should always be gray, bold, extra-small text, all-caps, and concatenated with a &gt; character. Do not use underline or other text decorations.</Text>
+                <Text>
+                  Breadcrumbs show the user's current location within the site
+                  hierarchy and allow them to navigate back to parent pages.
+                </Text>
+                <Text>
+                  Breadcrumbs should be visible on every page, in the top
+                  navigation bar section.
+                </Text>
+                <Text>
+                  They should always be gray, bold, extra-small text, all-caps,
+                  and concatenated with a &gt; character. Do not use underline
+                  or other text decorations.
+                </Text>
                 <ExampleSection cols={1}>
                   <Example type="do">
-                    <Breadcrumbs separator=">" styles={{ separator: { color: 'var(--mantine-color-gray-6)', fontWeight: 700 } }}>
-                      {['Build', 'Assessments', 'Media'].map((item, i) => <Anchor key={i} size="xs" c="gray" fw={700} tt="uppercase" underline="never">{item}</Anchor>)}
+                    <Breadcrumbs
+                      separator=">"
+                      styles={{
+                        separator: {
+                          color: "var(--mantine-color-gray-6)",
+                          fontWeight: 700,
+                        },
+                      }}
+                    >
+                      {["Build", "Assessments", "Media"].map((item, i) => (
+                        <Anchor
+                          key={i}
+                          size="xs"
+                          c="gray"
+                          fw={700}
+                          tt="uppercase"
+                          underline="never"
+                        >
+                          {item}
+                        </Anchor>
+                      ))}
                     </Breadcrumbs>
                   </Example>
                 </ExampleSection>
@@ -1648,34 +1991,86 @@ function App() {
             {/* NOTIFICATION */}
             {active === "Notification" && (
               <Stack gap="lg">
-                <Text>Notifications provide brief, non-blocking feedback to the user about the result of an action.</Text>
-                <Accordion multiple defaultValue={['when-to-use', 'content', 'variants']}>
+                <Text>
+                  Notifications provide brief, non-blocking feedback to the user
+                  about the result of an action.
+                </Text>
+                <Accordion
+                  multiple
+                  defaultValue={["when-to-use", "content", "variants"]}
+                >
                   <Accordion.Item value="when-to-use">
-                    <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
+                    <Accordion.Control>
+                      <Title order={4}>When to use</Title>
+                    </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Use Notifications to give users feedback after completing an action, whether it succeeded or failed. They're also appropriate for background system events that the user should be aware of but doesn't need to act on immediately.</Text>
+                        <Text>
+                          Use Notifications to give users feedback after
+                          completing an action, whether it succeeded or failed.
+                          They're also appropriate for background system events
+                          that the user should be aware of but doesn't need to
+                          act on immediately.
+                        </Text>
                         <ExampleSection cols={2}>
-                          <Example type="do" caption="Yes! Feedback confirming a user action was completed">
-                            <Notification title="Success" color="teal">Your changes have been saved.</Notification>
+                          <Example
+                            type="do"
+                            caption="Yes! Feedback confirming a user action was completed"
+                          >
+                            <Notification title="Success" color="teal">
+                              Your changes have been saved.
+                            </Notification>
                           </Example>
-                          <Example type="do" caption="Yes! Alerting a user to system events">
-                            <Notification title="Limited Search" color="orange">Find Candidates is popular right now! Search will be limited until 01-01-2050 00:00:00 PM.</Notification>
+                          <Example
+                            type="do"
+                            caption="Yes! Alerting a user to system events"
+                          >
+                            <Notification title="Limited Search" color="orange">
+                              Find Candidates is popular right now! Search will
+                              be limited until 01-01-2050 00:00:00 PM.
+                            </Notification>
                           </Example>
                         </ExampleSection>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="content">
-                    <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
+                    <Accordion.Control>
+                      <Title order={4}>Content</Title>
+                    </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>This component is for quick acknowledgement of actions. Notification content should be short and to the point. Do not use a Notification for critical information or anything a user may need to refer back to.</Text>
-                        <Text><Text component="span" fw={700}>Users should still be able to use a given feature or page even if they miss a notification.</Text> Never put information in a Notification that is required to complete a task.</Text>
+                        <Text>
+                          This component is for quick acknowledgement of
+                          actions. Notification content should be short and to
+                          the point. Do not use a Notification for critical
+                          information or anything a user may need to refer back
+                          to.
+                        </Text>
+                        <Text>
+                          <Text component="span" fw={700}>
+                            Users should still be able to use a given feature or
+                            page even if they miss a notification.
+                          </Text>{" "}
+                          Never put information in a Notification that is
+                          required to complete a task.
+                        </Text>
                         <ExampleSection cols={1}>
-                          <Example type="dont" caption="No! This notification contains critical instructions the user must follow— if they dismiss it or miss it, they're stuck">
-                            <Notification color="red" title="Action Required" withCloseButton={false}>
-                              Your assessment could not be submitted. To fix this, go to Settings &gt; Integrations &gt; ATS Sync, click "Re-authenticate," enter your API key, and re-submit the assessment. If the issue persists, contact support@hirescore.com with error code 4082.
+                          <Example
+                            type="dont"
+                            caption="No! This notification contains critical instructions the user must follow— if they dismiss it or miss it, they're stuck"
+                          >
+                            <Notification
+                              color="red"
+                              title="Action Required"
+                              withCloseButton={false}
+                            >
+                              Your assessment could not be submitted. To fix
+                              this, go to Settings &gt; Integrations &gt; ATS
+                              Sync, click "Re-authenticate," enter your API key,
+                              and re-submit the assessment. If the issue
+                              persists, contact support@hirescore.com with error
+                              code 4082.
                             </Notification>
                           </Example>
                         </ExampleSection>
@@ -1683,13 +2078,29 @@ function App() {
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="variants">
-                    <Accordion.Control><Title order={4}>Variants</Title></Accordion.Control>
+                    <Accordion.Control>
+                      <Title order={4}>Variants</Title>
+                    </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>The default style is acceptable to use everywhere. Make sure to use the appropriate Semantic Color for each notification. Do not add an Icon or a Loader to a Notification. Do not add a border.</Text>
+                        <Text>
+                          The default style is acceptable to use everywhere.
+                          Make sure to use the appropriate Semantic Color for
+                          each notification. Do not add an Icon or a Loader to a
+                          Notification. Do not add a border.
+                        </Text>
                         <ExampleSection cols={1}>
-                          <Example type="dont" caption="Notification with icon, incorrect color, and border">
-                            <Notification icon={<IconBell size={16} />} title="Error!" withBorder>Something went wrong. Unable to save changes</Notification>
+                          <Example
+                            type="dont"
+                            caption="Notification with icon, incorrect color, and border"
+                          >
+                            <Notification
+                              icon={<IconBell size={16} />}
+                              title="Error!"
+                              withBorder
+                            >
+                              Something went wrong. Unable to save changes
+                            </Notification>
                           </Example>
                         </ExampleSection>
                       </Stack>
@@ -1701,13 +2112,38 @@ function App() {
             {/* PAGINATION */}
             {active === "Pagination" && (
               <>
-                <Text>Pagination allows users to navigate through multi-page content in a structured way. Use pagination to break up large amounts of dynamically-loaded content like tables.</Text>
-                <Text>Pagination should always use the default size and radius settings The active page should have 2 siblings. Include edges and a dropdown to choose the number of rows shown at a time. Include a badge that displays the total number of entries and which of them are being shown.</Text>
+                <Text>
+                  Pagination allows users to navigate through multi-page content
+                  in a structured way. Use pagination to break up large amounts
+                  of dynamically-loaded content like tables.
+                </Text>
+                <Text>
+                  Pagination should always use the default size and radius
+                  settings The active page should have 2 siblings. Include edges
+                  and a dropdown to choose the number of rows shown at a time.
+                  Include a badge that displays the total number of entries and
+                  which of them are being shown.
+                </Text>
                 <ExampleSection cols={1}>
                   <Example type="neutral">
                     <Group justify="flex-start">
-                      <Badge variant="outline" color="gray" tt="uppercase" fw={700}>
-                        Showing {((paginationPage - 1) * parseInt(paginationRows) + 1).toLocaleString()}–{Math.min(paginationPage * parseInt(paginationRows), totalRows).toLocaleString()} of {totalRows.toLocaleString()}
+                      <Badge
+                        variant="outline"
+                        color="gray"
+                        tt="uppercase"
+                        fw={700}
+                      >
+                        Showing{" "}
+                        {(
+                          (paginationPage - 1) * parseInt(paginationRows) +
+                          1
+                        ).toLocaleString()}
+                        –
+                        {Math.min(
+                          paginationPage * parseInt(paginationRows),
+                          totalRows,
+                        ).toLocaleString()}{" "}
+                        of {totalRows.toLocaleString()}
                       </Badge>
                       <Pagination
                         total={Math.ceil(totalRows / parseInt(paginationRows))}
@@ -1717,7 +2153,15 @@ function App() {
                         withEdges
                       />
                       <Tooltip label="Number of rows">
-                        <Select data={['20', '50', '100', '200', '500']} value={paginationRows} onChange={(v) => { setPaginationRows(v); setPaginationPage(1); }} w={80} />
+                        <Select
+                          data={["20", "50", "100", "200", "500"]}
+                          value={paginationRows}
+                          onChange={(v) => {
+                            setPaginationRows(v);
+                            setPaginationPage(1);
+                          }}
+                          w={80}
+                        />
                       </Tooltip>
                     </Group>
                   </Example>
@@ -1727,23 +2171,55 @@ function App() {
             {/* TOOLTIP */}
             {active === "Tooltip" && (
               <Stack gap="lg">
-                <WIPBanner />
-                <Text>Tooltips display additional information when a user hovers over or focuses an element.</Text>
-                <Accordion multiple defaultValue={['when-to-use', 'content', 'placement']}>
+                <Text>
+                  Tooltips display a small bit of information when a user hovers
+                  over or focuses an element.
+                </Text>
+                <Accordion
+                  multiple
+                  defaultValue={["when-to-use", "content", "placement"]}
+                >
                   <Accordion.Item value="when-to-use">
-                    <Accordion.Control><Title order={4}>When to use</Title></Accordion.Control>
+                    <Accordion.Control>
+                      <Title order={4}>When to use</Title>
+                    </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Placeholder: add when-to-use guidance here.</Text>
+                        <Text>
+                          Use Tooltips to declare the purpose of elements that
+                          have no visible label (e.g., ActionIcon buttons) A
+                          Tooltip is also appropriate for truncated text,
+                          abbreviations, or any UI element that benefits from a
+                          short clarifying note.
+                        </Text>
+                        <Text>
+                          Do not use Tooltips to convey critical information, as
+                          mobile users can't hover and keyboard users may miss
+                          them. If the information is necessary to complete a
+                          task, put it in a visible label or description
+                          instead.
+                        </Text>
                         <ExampleSection cols={2}>
-                          <Example type="do" caption="Yes! Placeholder correct usage">
-                            <Tooltip label="Tooltip text">
-                              <Button variant="subtle">Hover me</Button>
+                          <Example
+                            type="do"
+                            caption="Yes! Tooltip clarifies an unlabeled icon"
+                          >
+                            <Tooltip label="Reset table">
+                              <ActionIcon
+                                variant="subtle"
+                                color="gray"
+                                aria-label="Reset table"
+                              >
+                                <IconRefresh size={24} />
+                              </ActionIcon>
                             </Tooltip>
                           </Example>
-                          <Example type="dont" caption="No! Placeholder incorrect usage">
-                            <Tooltip label="Tooltip text">
-                              <Button variant="subtle">Hover me</Button>
+                          <Example
+                            type="dont"
+                            caption="No! The button label already communicates the action"
+                          >
+                            <Tooltip label="Click to save your changes">
+                              <Button>Save</Button>
                             </Tooltip>
                           </Example>
                         </ExampleSection>
@@ -1751,18 +2227,80 @@ function App() {
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="content">
-                    <Accordion.Control><Title order={4}>Content</Title></Accordion.Control>
+                    <Accordion.Control>
+                      <Title order={4}>Content</Title>
+                    </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Placeholder: add content guidance here.</Text>
+                        <Text>
+                          Keep tooltip text brief, ideally one short phrase or
+                          sentence. Never include interactive elements (links,
+                          buttons) inside a Tooltip.
+                        </Text>
+                        <ExampleSection cols={3}>
+                          <Example type="do" caption="Yes! Short and specific">
+                            <Tooltip label="Copy to clipboard">
+                              <ActionIcon
+                                color="gray"
+                                variant="subtle"
+                                aria-label="Filter by date range"
+                              >
+                                <IconCopy size={24} />
+                              </ActionIcon>
+                            </Tooltip>
+                          </Example>
+                          <Example type="dont" caption="No! Way too long">
+                            <Tooltip label="Click on this button to copy the data currently displayed on the table below to your clipboard. You can then paste this into a spreadsheet or word processor.">
+                              <ActionIcon
+                                color="gray"
+                                variant="subtle"
+                                aria-label="Filter"
+                              >
+                                <IconCopy size={24} />
+                              </ActionIcon>
+                            </Tooltip>
+                          </Example>
+                          <Example type="dont" caption="No! Links inside a tooltip can't be clicked">
+                            <Tooltip label={<Text size="xs">Copy to clipboard. <Anchor size="xs" href="#">Learn more about copying</Anchor></Text>}>
+                              <ActionIcon color="gray" variant="subtle" aria-label="Copy to clipboard">
+                                <IconCopy size={24} />
+                              </ActionIcon>
+                            </Tooltip>
+                          </Example>
+                        </ExampleSection>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
                   <Accordion.Item value="placement">
-                    <Accordion.Control><Title order={4}>Placement</Title></Accordion.Control>
+                    <Accordion.Control>
+                      <Title order={4}>Placement</Title>
+                    </Accordion.Control>
                     <Accordion.Panel>
                       <Stack gap="sm">
-                        <Text>Placeholder: add placement guidance here.</Text>
+                        <Text>
+                          The default placement (top) works for most cases.
+                          Override placement when the tooltip would be clipped
+                          by the edge of the viewport or a scrollable container
+                          — use bottom, left, or right as needed.
+                        </Text>
+                        <ExampleSection cols={2}>
+                          <Example
+                            type="neutral"
+                            caption="Default top placement"
+                          >
+                            <Tooltip label="Top (default)" position="top">
+                              <Button variant="subtle">Hover me</Button>
+                            </Tooltip>
+                          </Example>
+                          <Example
+                            type="neutral"
+                            caption="Use bottom when near the top of the viewport"
+                          >
+                            <Tooltip label="Bottom placement" position="bottom">
+                              <Button variant="subtle">Hover me</Button>
+                            </Tooltip>
+                          </Example>
+                        </ExampleSection>
                       </Stack>
                     </Accordion.Panel>
                   </Accordion.Item>
@@ -1829,13 +2367,20 @@ function App() {
             {active === "Create/Edit Assessment" && (
               <Stack gap="lg">
                 <WIPBanner />
-                <Text>Create/Edit Assessment refers to the page PMs and Admins see when editing AP assessments.</Text>
+                <Text>
+                  Create/Edit Assessment refers to the page PMs and Admins see
+                  when editing AP assessments.
+                </Text>
               </Stack>
             )}
             {active === "Candidate Perspective" && (
               <Stack gap="lg">
                 <WIPBanner />
-                <Text>Candidate Perspective refers to the side of Assessment Platform job candidates see when filling applications and completing assessments.</Text>
+                <Text>
+                  Candidate Perspective refers to the side of Assessment
+                  Platform job candidates see when filling applications and
+                  completing assessments.
+                </Text>
               </Stack>
             )}
           </Stack>
