@@ -28,6 +28,7 @@ import {
   Anchor,
   Tooltip,
   Select,
+  Stepper,
 } from "@mantine/core";
 import { useState } from "react";
 import textInputExample from "./assets/textInputExample.png";
@@ -87,6 +88,7 @@ const sections = [
       "Text Input",
       "Loader",
       "Modal",
+      "Stepper",
       "Tooltip",
     ],
   },
@@ -2164,6 +2166,23 @@ function App() {
                         />
                       </Tooltip>
                     </Group>
+                  </Example>
+                </ExampleSection>
+              </>
+            )}
+            {/* STEPPER */}
+            {active === "Stepper" && (
+              <>
+                <Text>Steppers guide users through a multi-step process by showing progress and indicating which step they are currently on.</Text>
+                <Text>Consider using Steppers to break up long Modals or forms with lots of fields.</Text>
+                <Text>Steppers should use the default styling, with HireScore Blue.</Text>
+                <ExampleSection cols={1}>
+                  <Example type="neutral">
+                    <Stepper active={1} w="100%" styles={{ stepIcon: { borderWidth: 2 }, stepBody: { marginTop: 4 } }}>
+                      <Stepper.Step label="Step 1" description="Account info" />
+                      <Stepper.Step label="Step 2" description="Personal details" />
+                      <Stepper.Step label="Step 3" description="Review" />
+                    </Stepper>
                   </Example>
                 </ExampleSection>
               </>
