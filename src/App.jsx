@@ -94,7 +94,10 @@ const sections = [
   },
   {
     label: "Assessment Platform",
-    children: ["Create/Edit Assessment", "Candidate Perspective"],
+    children: [
+      "Create/Edit Assessment",
+      { label: "Candidate Perspective", children: ["Phase One"] },
+    ],
   },
 ];
 
@@ -629,16 +632,35 @@ function App() {
             <NavLink
               key={section.label}
               label={section.label}
-              defaultOpened={section.children.includes(active)}
+              defaultOpened={section.children.some(c => c === active || (c.label === active) || (c.children && c.children.includes(active)))}
             >
-              {section.children.map((child) => (
-                <NavLink
-                  key={child}
-                  label={child}
-                  active={active === child}
-                  onClick={() => setActive(child)}
-                />
-              ))}
+              {section.children.map((child) =>
+                typeof child === 'object' ? (
+                  <NavLink
+                    key={child.label}
+                    label={child.label}
+                    active={active === child.label}
+                    defaultOpened={child.children.includes(active) || active === child.label}
+                    onClick={() => setActive(child.label)}
+                  >
+                    {child.children.map((grandchild) => (
+                      <NavLink
+                        key={grandchild}
+                        label={grandchild}
+                        active={active === grandchild}
+                        onClick={() => setActive(grandchild)}
+                      />
+                    ))}
+                  </NavLink>
+                ) : (
+                  <NavLink
+                    key={child}
+                    label={child}
+                    active={active === child}
+                    onClick={() => setActive(child)}
+                  />
+                )
+              )}
             </NavLink>
           ) : (
             <NavLink
@@ -2385,7 +2407,6 @@ function App() {
             )}
             {active === "Create/Edit Assessment" && (
               <Stack gap="lg">
-                <WIPBanner />
                 <Text>
                   Create/Edit Assessment refers to the page PMs and Admins see
                   when editing AP assessments.
@@ -2400,6 +2421,47 @@ function App() {
                   Platform job candidates see when filling applications and
                   completing assessments.
                 </Text>
+              </Stack>
+            )}
+            {active === "Phase One" && (
+              <Stack gap="lg">
+                <WIPBanner />
+                <Text>Assessments assigned to Phase One of a given hiring cycle should include the client's branding.</Text>
+                <Accordion multiple defaultValue={['logo-banner', 'application-header']}>
+                  <Accordion.Item value="logo-banner">
+                    <Accordion.Control><Title order={4}>Logo Banner</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>All Phase One assessments should have the client's logo and "careers" stickied to the top of the page.</Text>
+                        <ExampleSection cols={1}>
+                          <Example type="neutral">
+                            <div style={{ height: 50, display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.25rem', width: '100%' }}>
+                              <img src="https://placehold.co/250x60" alt="Organization Logo" width="auto" style={{ maxHeight: '100%', padding: '0.25rem' }} />
+                              <span style={{ width: 1, height: '40%', backgroundColor: 'var(--mantine-color-dark-6)' }} />
+                              <p style={{ color: 'var(--mantine-color-dark-6)', margin: 0 }}>Careers</p>
+                            </div>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                  <Accordion.Item value="application-header">
+                    <Accordion.Control><Title order={4}>Application Header</Title></Accordion.Control>
+                    <Accordion.Panel>
+                      <Stack gap="sm">
+                        <Text>Online Application (OA) assessments should include the cycle's job title followed by "HireScore Application" in the main content area above the first question.</Text>
+                        <ExampleSection cols={1}>
+                          <Example>
+                            <Stack gap={2} align="flex-start" w="100%">
+                              <Text fw={700} fz={34} ta="left">Job Title</Text>
+                              <Text fw={400} fz={26} c="var(--mantine-color-gray-6)" ta="left">HireScore Application</Text>
+                            </Stack>
+                          </Example>
+                        </ExampleSection>
+                      </Stack>
+                    </Accordion.Panel>
+                  </Accordion.Item>
+                </Accordion>
               </Stack>
             )}
           </Stack>
