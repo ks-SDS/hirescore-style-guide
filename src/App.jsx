@@ -29,6 +29,13 @@ import {
   Tooltip,
   Select,
   Stepper,
+  Box,
+  Radio,
+  Textarea,
+  List,
+  Checkbox,
+  Paper,
+  Divider,
 } from "@mantine/core";
 import { useState } from "react";
 import textInputExample from "./assets/textInputExample.png";
@@ -97,6 +104,7 @@ const sections = [
     children: [
       "Create/Edit Assessment",
       { label: "Candidate Perspective", children: ["Phase One"] },
+      "OA Report",
     ],
   },
 ];
@@ -566,6 +574,464 @@ function WIPBanner() {
     </Text>
   );
 }
+
+// ─── OA Report Components ────────────────────────────────────────────────────
+
+function ScoreBadge({ score }) {
+  if (typeof score === "string") {
+    return (
+      <Text component="span" size="xs" fw={700} c="red.6" ml={4}>
+        {score}
+      </Text>
+    );
+  }
+  const color = score > 0 ? "teal.6" : score < 0 ? "red.6" : "dimmed";
+  const label = score > 0 ? `+${score}` : score;
+  return (
+    <Text component="span" size="xs" fw={700} c={color} ml={4}>
+      {label}
+    </Text>
+  );
+}
+
+function RadioQ({ question, options, selected }) {
+  return (
+    <Box>
+      <Text fw={600}>{question}</Text>
+      <Divider my={4} />
+      <Stack gap={4}>
+        {options.map((opt) => (
+          <Group key={opt.label} gap={6} wrap="nowrap" align="center">
+            <Radio readOnly checked={opt.label === selected} onChange={() => {}} label={opt.label} />
+            <ScoreBadge score={opt.score} />
+          </Group>
+        ))}
+      </Stack>
+    </Box>
+  );
+}
+
+function OpenQ({ question, answer }) {
+  return (
+    <Box>
+      <Text fw={600}>{question}</Text>
+      <Divider my={4} />
+      {answer && <Text size="sm">{answer}</Text>}
+    </Box>
+  );
+}
+
+function OAReport() {
+  return (
+    <Box p="md" maw={860} mx="auto">
+
+      <Title order={2} c="dimmed" mb={4}>[Client Name]</Title>
+      <Title order={2} c="dimmed" mb="xl">[Cycle Name]</Title>
+
+        <Title order={4} mb="md">Contact Information</Title>
+      <Stack gap="md">
+        <OpenQ question="First Name" answer="Michelle" />
+        <OpenQ question="Last Name" answer="White" />
+        <OpenQ question="Street Address" answer="753 Sycamore Ln" />
+        <OpenQ question="City" answer="Charlotte" />
+        <OpenQ question="State" answer="North Carolina" />
+        <OpenQ question="Zipcode" answer="28201" />
+        <OpenQ question="E-mail" answer="michelle.white@nomail.gov" />
+        <OpenQ question="Phone Number" answer="(410) 555-1022" />
+        <RadioQ
+          question="Do you consent to text messages from the hirescore.com team throughout the hiring process? Messaging and data rates may apply. Reply STOP to unsubscribe from all hirescore.com text updates."
+          selected={"Yes"}
+          options={[
+            { label: "Yes", score: 0 },
+            { label: "No", score: 0 },
+          ]}
+        />
+      </Stack>
+      <Divider my="xl" />
+
+
+      <RadioQ
+        question="How did you hear about this job opening?"
+        selected="Personal Referral (e.g., current ACME employee)"
+        options={[
+          { label: "HireScore.com", score: 0 },
+          { label: "Online Job Board (e.g., Indeed)", score: 0 },
+          { label: "Social Media (e.g., Facebook, X.com)", score: 0 },
+          { label: "Personal Referral (e.g., current ACME employee)", score: 1 },
+          { label: "Employment agency", score: 0 },
+          { label: "Other advertisement", score: 0 },
+          { label: "Don't remember/decline to answer", score: 0 },
+        ]}
+      />
+
+      <Divider my="xl" />
+
+      <RadioQ
+        question="Please select highest degree earned:"
+        selected="Associate degree or technical certificate"
+        options={[
+          { label: "Did not graduate from high school", score: -5 },
+          { label: "High School Diploma or GED", score: 0 },
+          { label: "Associate degree or technical certificate", score: 1 },
+          { label: "Bachelor's Degree", score: 2 },
+          { label: "Master's or MBA", score: 0 },
+          { label: "Ph.D. or equivalent", score: 0 },
+        ]}
+      />
+
+      <Divider my="xl" />
+
+      <RadioQ
+        question="How many years of experience do you have working in Customer Service?"
+        selected="4+ years"
+        options={[
+          { label: "None", score: -10 },
+          { label: "Less than two years", score: -5 },
+          { label: "2-4 years", score: 0 },
+          { label: "4+ years", score: 5 },
+        ]}
+      />
+
+      <Divider my="xl" />
+
+      <Title order={4} mb="md">What level of expertise do you have with the following?</Title>
+      <Stack gap="lg">
+        <RadioQ
+          question="Written and verbal communication skills"
+          selected="5 (Expert)"
+          options={[
+            { label: "1 (None)", score: -20 },
+            { label: "2", score: -10 },
+            { label: "3", score: -2 },
+            { label: "4", score: 0 },
+            { label: "5 (Expert)", score: 5 },
+          ]}
+        />
+        <RadioQ
+          question="Providing excellent service to customers and employees"
+          selected="5 (Expert)"
+          options={[
+            { label: "1 (None)", score: -11 },
+            { label: "2", score: -8 },
+            { label: "3", score: -3 },
+            { label: "4", score: 0 },
+            { label: "5 (Expert)", score: 3 },
+          ]}
+        />
+        <RadioQ
+          question="Prioritizing work and managing deadlines"
+          selected="5 (Expert)"
+          options={[
+            { label: "1 (None)", score: -8 },
+            { label: "2", score: -5 },
+            { label: "3", score: -2 },
+            { label: "4", score: 0 },
+            { label: "5 (Expert)", score: 2 },
+          ]}
+        />
+        <RadioQ
+          question="Handling sensitive customer information and maintaining confidentiality in the workplace"
+          selected="5 (Expert)"
+          options={[
+            { label: "1 (None)", score: -5 },
+            { label: "2", score: -2 },
+            { label: "3", score: 0 },
+            { label: "4", score: 2 },
+            { label: "5 (Expert)", score: 5 },
+          ]}
+        />
+        <RadioQ
+          question="Working with little supervision"
+          selected="5 (Expert)"
+          options={[
+            { label: "1 (None)", score: -5 },
+            { label: "2", score: -2 },
+            { label: "3", score: 0 },
+            { label: "4", score: 2 },
+            { label: "5 (Expert)", score: 5 },
+          ]}
+        />
+        <RadioQ
+          question="Coordinating and working on projects with other departments"
+          selected="5 (Expert)"
+          options={[
+            { label: "1 (None)", score: -8 },
+            { label: "2", score: -3 },
+            { label: "3", score: 0 },
+            { label: "4", score: 3 },
+            { label: "5 (Expert)", score: 8 },
+          ]}
+        />
+        <RadioQ
+          question="Basic computer skills"
+          selected="5 (Expert)"
+          options={[
+            { label: "1 (None)", score: -22 },
+            { label: "2", score: -11 },
+            { label: "3", score: -5 },
+            { label: "4", score: 0 },
+            { label: "5 (Expert)", score: 5 },
+          ]}
+        />
+        <RadioQ
+          question="Data entry (processing orders, cancellations, adjustments, requests, fees, invoices)"
+          selected="5 (Expert)"
+          options={[
+            { label: "1 (None)", score: -8 },
+            { label: "2", score: -5 },
+            { label: "3", score: 2 },
+            { label: "4", score: 0 },
+            { label: "5 (Expert)", score: 2 },
+          ]}
+        />
+      </Stack>
+
+      <Divider my="xl" />
+
+      <RadioQ
+        question="How many full time jobs have you had in the last five years?"
+        selected="1"
+        options={[
+          { label: "0", score: -10 },
+          { label: "1", score: 3 },
+          { label: "2", score: 0 },
+          { label: "3", score: -3 },
+          { label: "4 or more", score: -6 },
+        ]}
+      />
+
+      <Divider my="xl" />
+
+      <RadioQ
+        question="If hired, how long would you prefer to work for ACME?"
+        selected="More than three years"
+        options={[
+          { label: "Don't know", score: -10 },
+          { label: "Less than three months", score: 0 },
+          { label: "Three months to one year", score: 0 },
+          { label: "One to three years", score: -20 },
+          { label: "More than three years", score: 1 },
+        ]}
+      />
+
+      <Divider my="xl" />
+
+    
+
+      <Divider my="xl" />
+
+      <Title order={3} mb="md">Education</Title>
+
+      <Title order={4} mb="xs">Last High School</Title>
+      <Stack gap="md" mb="lg">
+        <OpenQ question="School name" answer="Jackson High School" />
+        <OpenQ question="School City" answer="Detroit MI" />
+        <OpenQ question="Graduation year" answer="2016" />
+        <OpenQ question="Estimated GPA (4.0 scale)" answer="3.2" />
+        <OpenQ question="Number of years attended" answer="4" />
+      </Stack>
+
+      <Divider my="xl" />
+
+      <Title order={4} mb="xs">Most recent college</Title>
+      <Stack gap="md" mb="lg">
+        <OpenQ question="College Name" answer="State Community College" />
+        <RadioQ
+          question="Did you graduate?"
+          selected={"Yes"}
+          options={[
+            { label: "Yes", score: 0 },
+            { label: "No", score: 0 },
+            { label: "Presently Attending", score: 0 },
+          ]}
+        />
+        <OpenQ question="Graduation Year" answer="2018" />
+        <OpenQ question="Major area of study" answer="Political Science" />
+        <OpenQ question="Type of degree" />
+        <OpenQ question="Estimated GPA (4.0 scale)" answer="3.6" />
+      </Stack>
+
+      <Divider my="xl" />
+
+      <RadioQ
+        question="Have you ever worked for ACME?"
+        selected={"No"}
+        options={[
+          { label: "Yes", score: 0 },
+          { label: "As a Contractor/Consultant", score: 0 },
+          { label: "No", score: 0 },
+        ]}
+      />
+
+      <Divider my="xl" />
+
+      <Title order={3} mb={4}>Please list your work experience beginning with your most recent job held.</Title>
+      <Text size="sm" c="dimmed" mb="lg">Remember to include experience relevant to the ACME Customer Service Representative position!</Text>
+
+      <Title order={4} mb="xs">Current or most recent job</Title>
+      <Stack gap="md" mb="md">
+        <OpenQ question="Job 1 title" answer="Service Operations Supervisor" />
+        <OpenQ question="Name of employer" answer="Kohl's" />
+        <OpenQ question="City, State, and Zipcode" answer="Virginia Beach VA 23450" />
+        <OpenQ question="Phone number" answer="(215) 555-1052" />
+        <OpenQ question="Name of last supervisor" answer="Tom Anderson" />
+        <OpenQ question="Starting date (MM/YYYY)" answer="01/2025" />
+        <OpenQ question="Leaving date (MM/YYYY)" answer="02/2026" />
+        <OpenQ question="Starting salary or rate" answer="$27/hr" />
+        <OpenQ question="Final salary or rate" answer="$33/hr" />
+        <OpenQ question="Description of work" answer="Act as the liaison between the customer service floor and the product team, relaying field feedback that led to three feature updates in a single quarter." />
+        <OpenQ question="Accomplishments" answer="Developed a dashboard tracking real-time NPS trends that became a standard tool for the entire support organization." />
+        <RadioQ
+          question="Was your separation from this job voluntary or involuntary?"
+          selected={"Still Employed"}
+          options={[
+            { label: "Voluntary", score: 0 },
+            { label: "Involuntary", score: 0 },
+            { label: "Still Employed", score: 0 },
+          ]}
+        />
+      </Stack>
+
+      <Divider my="xl" />
+
+      <Title order={4} mb="xs">Job 2</Title>
+      <Stack gap="md" mb="md">
+        <OpenQ question="Job 2 title" answer="Quality Assurance Coordinator" />
+        <OpenQ question="Name of employer" answer="Dillard's" />
+        <OpenQ question="City, State, and Zipcode" answer="Raleigh NC 27601" />
+        <OpenQ question="Phone number" answer="(904) 555-1082" />
+        <OpenQ question="Name of last supervisor" answer="David Thompson" />
+        <OpenQ question="Starting date (month/year)" answer="05/2023" />
+        <OpenQ question="Leaving date (month/year)" answer="12/2024" />
+        <OpenQ question="Starting salary or rate" answer="$20/hr" />
+        <OpenQ question="Final salary or rate" answer="$23/hr" />
+        <OpenQ question="Description of work" answer="Managed real-time queue operations during peak volume periods, redistributing workloads to keep average…" />
+        <OpenQ question="Accomplishments" answer="Negotiated a revised SLA framework with a key enterprise client that increased the contract value by…" />
+        <RadioQ
+          question="Was your separation from this job voluntary or involuntary?"
+          selected={"Voluntary"}
+          options={[
+            { label: "Voluntary", score: 0 },
+            { label: "Involuntary", score: 0 },
+            { label: "Still Employed", score: 0 },
+          ]}
+        />
+        <RadioQ
+          question="Exact reason for leaving?"
+          selected="Resigned for a better position"
+          options={[
+            { label: "Resigned for a better position", score: 1 },
+            { label: "Resigned for other reasons", score: 0 },
+            { label: "Laid off", score: 0 },
+            { label: "Terminated/fired", score: -3 },
+            { label: "Company/facility closed", score: 0 },
+            { label: "Other, please explain:", score: 0 },
+          ]}
+        />
+      </Stack>
+
+      <Divider my="xl" />
+
+      <Title order={4} mb="xs">Job 3</Title>
+      <Stack gap="md" mb="md">
+        <OpenQ question="Job 3 title" answer="Support Services Supervisor" />
+        <OpenQ question="Name of employer" answer="Westbridge Corp" />
+        <OpenQ question="City, State, and Zipcode" answer="Baltimore MD 21201" />
+        <OpenQ question="Phone number" answer="(702) 555-1112" />
+        <OpenQ question="Name of last supervisor" answer="Maria Rodriguez" />
+        <OpenQ question="Starting date (month/year)" answer="01/2020" />
+        <OpenQ question="Leaving date (month/year)" answer="03/2023" />
+        <OpenQ question="Starting salary or rate" answer="$21.00/hr" />
+        <OpenQ question="Final salary or rate" answer="$21.00/hr" />
+        <OpenQ question="Description of work" answer="Piloted a new chat-support channel from concept to launch, defining macros, response templates, and…" />
+        <OpenQ question="Accomplishments" answer="Maintained a personal CSAT score of 4.8/5.0 across 1,200+ rated interactions over the full tenure." />
+        <RadioQ
+          question="Was your separation from this job voluntary or involuntary?"
+          selected={"Voluntary"}
+          options={[
+            { label: "Voluntary", score: 0 },
+            { label: "Involuntary", score: 0 },
+            { label: "Still Employed", score: 0 },
+          ]}
+        />
+        <RadioQ
+          question="Exact reason for leaving?"
+          selected="Resigned for a better position"
+          options={[
+            { label: "Resigned for a better position", score: 1 },
+            { label: "Resigned for other reasons", score: 0 },
+            { label: "Laid off", score: 0 },
+            { label: "Terminated/fired", score: -1 },
+            { label: "Company/facility closed", score: 0 },
+            { label: "Other, please explain:", score: 0 },
+          ]}
+        />
+      </Stack>
+
+      <Divider my="xl" />
+
+
+      <RadioQ
+        question="May we contact your present employer?"
+        selected={"Yes"}
+        options={[
+          { label: "Yes", score: 0 },
+          { label: "No", score: 0 },
+        ]}
+      />
+
+      <Box mt="lg">
+        <Text fw={600}>Comments</Text>
+        <Divider my={4} />
+        <Text size="sm">Feel free to contact present employer! Further references available upon request.</Text>
+      </Box>
+
+      <Box mt="lg">
+        <OpenQ question="Use the space below to summarize any additional information necessary to describe your full qualifications for the specific position for which you are applying." answer="Thank you for your time and consideration." />
+      </Box>
+
+      <Divider my="xl" />
+
+      <Accordion variant="filled" defaultValue="knockouts">
+        <Accordion.Item value="knockouts">
+          <Accordion.Control>
+            <Text fw={700} c="red.6">Knockouts</Text>
+          </Accordion.Control>
+          <Accordion.Panel>
+            <Stack gap="lg">
+              <RadioQ
+                question="Are you 18 years or older?"
+                selected="Yes"
+                options={[
+                  { label: "Yes", score: 0 },
+                  { label: "No", score: "Knockout" },
+                ]}
+              />
+              <RadioQ
+                question="Are you legally eligible to work in the United States?"
+                selected="Yes"
+                options={[
+                  { label: "Yes", score: 0 },
+                  { label: "No", score: "Knockout" },
+                ]}
+              />
+              <RadioQ
+                question="Do you require visa sponsorship now or in the future to remain employed by ACME?"
+                selected="No"
+                options={[
+                  { label: "Yes", score: "Knockout" },
+                  { label: "No", score: 0 },
+                ]}
+              />
+            </Stack>
+          </Accordion.Panel>
+        </Accordion.Item>
+      </Accordion>
+
+    </Box>
+  );
+}
+
 
 function ExampleSection({ cols = 2, children }) {
   return (
@@ -2463,6 +2929,9 @@ function App() {
                   </Accordion.Item>
                 </Accordion>
               </Stack>
+            )}
+            {active === "OA Report" && (
+              <OAReport />
             )}
           </Stack>
         </Container>
