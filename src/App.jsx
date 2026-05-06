@@ -625,27 +625,14 @@ function OAReport() {
   return (
     <Box p="md" maw={860} mx="auto">
 
-      <Title order={2} c="dimmed" mb={4}>[Client Name]</Title>
-      <Title order={2} c="dimmed" mb="xl">[Cycle Name]</Title>
+      <Title order={2} c="dimmed" mb={4}>[Client Name Here]</Title>
+      <Title order={2} c="dimmed" mb="xl">[Cycle Name Here]</Title>
 
-        <Title order={4} mb="md">Contact Information</Title>
-      <Stack gap="md">
-        <OpenQ question="First Name" answer="Michelle" />
-        <OpenQ question="Last Name" answer="White" />
-        <OpenQ question="Street Address" answer="753 Sycamore Ln" />
-        <OpenQ question="City" answer="Charlotte" />
-        <OpenQ question="State" answer="North Carolina" />
-        <OpenQ question="Zipcode" answer="28201" />
-        <OpenQ question="E-mail" answer="michelle.white@nomail.gov" />
-        <OpenQ question="Phone Number" answer="(410) 555-1022" />
-        <RadioQ
-          question="Do you consent to text messages from the hirescore.com team throughout the hiring process? Messaging and data rates may apply. Reply STOP to unsubscribe from all hirescore.com text updates."
-          selected={"Yes"}
-          options={[
-            { label: "Yes", score: 0 },
-            { label: "No", score: 0 },
-          ]}
-        />
+      <Stack gap={2} align="center">
+        <Text fw={700}>Michelle White</Text>
+        <Text size="sm">753 Sycamore Ln</Text>
+        <Text size="sm">Charlotte, North Carolina 28201</Text>
+        <Text size="sm">michelle.white@nomail.gov | (410) 555-1022</Text>
       </Stack>
       <Divider my="xl" />
 
