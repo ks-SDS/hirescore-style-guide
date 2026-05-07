@@ -634,7 +634,7 @@ function OAReport() {
         <Text size="sm">Charlotte, North Carolina 28201</Text>
         <Text size="sm">michelle.white@nomail.gov | (410) 555-1022</Text>
       </Stack>
-      <Divider my="xl" />
+      <Box my="xl" />
 
 
       <RadioQ
@@ -651,7 +651,7 @@ function OAReport() {
         ]}
       />
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <RadioQ
         question="Please select highest degree earned:"
@@ -666,7 +666,7 @@ function OAReport() {
         ]}
       />
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <RadioQ
         question="How many years of experience do you have working in Customer Service?"
@@ -679,7 +679,7 @@ function OAReport() {
         ]}
       />
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <Title order={4} mb="md">What level of expertise do you have with the following?</Title>
       <Stack gap="lg">
@@ -773,7 +773,7 @@ function OAReport() {
         />
       </Stack>
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <RadioQ
         question="How many full time jobs have you had in the last five years?"
@@ -787,7 +787,7 @@ function OAReport() {
         ]}
       />
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <RadioQ
         question="If hired, how long would you prefer to work for ACME?"
@@ -801,11 +801,11 @@ function OAReport() {
         ]}
       />
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
     
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <Title order={3} mb="md">Education</Title>
 
@@ -818,7 +818,7 @@ function OAReport() {
         <OpenQ question="Number of years attended" answer="4" />
       </Stack>
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <Title order={4} mb="xs">Most recent college</Title>
       <Stack gap="md" mb="lg">
@@ -838,7 +838,7 @@ function OAReport() {
         <OpenQ question="Estimated GPA (4.0 scale)" answer="3.6" />
       </Stack>
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <RadioQ
         question="Have you ever worked for ACME?"
@@ -850,7 +850,7 @@ function OAReport() {
         ]}
       />
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <Title order={3} mb={4}>Please list your work experience beginning with your most recent job held.</Title>
       <Text size="sm" c="dimmed" mb="lg">Remember to include experience relevant to the ACME Customer Service Representative position!</Text>
@@ -879,7 +879,7 @@ function OAReport() {
         />
       </Stack>
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <Title order={4} mb="xs">Job 2</Title>
       <Stack gap="md" mb="md">
@@ -917,7 +917,7 @@ function OAReport() {
         />
       </Stack>
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <Title order={4} mb="xs">Job 3</Title>
       <Stack gap="md" mb="md">
@@ -955,7 +955,7 @@ function OAReport() {
         />
       </Stack>
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
 
       <RadioQ
@@ -977,7 +977,7 @@ function OAReport() {
         <OpenQ question="Use the space below to summarize any additional information necessary to describe your full qualifications for the specific position for which you are applying." answer="Thank you for your time and consideration." />
       </Box>
 
-      <Divider my="xl" />
+      <Box my="xl" />
 
       <Accordion variant="filled" defaultValue="knockouts">
         <Accordion.Item value="knockouts">
