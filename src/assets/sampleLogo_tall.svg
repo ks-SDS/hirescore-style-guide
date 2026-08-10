@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1035 1453" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-271.198,-1689.63)">
+        <g>
+            <g transform="matrix(1.84133,0,0,1.40208,-1506.5,-1261.55)">
+                <path d="M1246.45,2104.86L1527.45,2500.59L1420.12,3140.89L1072.78,3140.89L965.443,2500.59L1246.45,2104.86Z" style="fill:rgb(254,251,228);"/>
+                <clipPath id="_clip1">
+                    <path d="M1246.45,2104.86L1527.45,2500.59L1420.12,3140.89L1072.78,3140.89L965.443,2500.59L1246.45,2104.86Z"/>
+                </clipPath>
+                <g clip-path="url(#_clip1)">
+                    <g transform="matrix(0.425519,0,0,0.713227,772.565,988.915)">
+                        <rect x="295.018" y="1146.6" width="1755.27" height="972.896" style="fill:rgb(219,61,43);"/>
+                    </g>
+                </g>
+            </g>
+            <g transform="matrix(0.792576,0,0,0.792576,370.224,50.5984)">
+                <path d="M837.469,2512.54L862.954,2590.98L945.426,2590.98L878.705,2639.45L904.19,2717.89L837.469,2669.41L770.747,2717.89L796.233,2639.45L729.511,2590.98L811.983,2590.98L837.469,2512.54Z" style="fill:rgb(254,251,228);"/>
+            </g>
+            <g transform="matrix(1.25042,0,0,1.25042,-258.568,-1228.13)">
+                <path d="M837.469,2512.54L862.954,2590.98L945.426,2590.98L878.705,2639.45L904.19,2717.89L837.469,2669.41L770.747,2717.89L796.233,2639.45L729.511,2590.98L811.983,2590.98L837.469,2512.54Z" style="fill:rgb(254,251,228);"/>
+            </g>
+            <g transform="matrix(1,0,0,1,-0.000438722,-34.9284)">
+                <path d="M788.616,2897.84C817.036,2846.96 873.874,2846.96 902.294,2872.4C930.714,2897.84 930.714,2948.71 902.294,2999.59C882.4,3037.75 831.245,3075.91 788.616,3101.35C745.987,3075.91 694.833,3037.75 674.939,2999.59C646.52,2948.71 646.52,2897.84 674.939,2872.4C703.359,2846.96 760.197,2846.96 788.616,2897.84Z" style="fill:rgb(219,61,43);"/>
+            </g>
+            <g transform="matrix(0.792576,0,0,0.792576,-114.601,55.0951)">
+                <path d="M837.469,2512.54L862.954,2590.98L945.426,2590.98L878.705,2639.45L904.19,2717.89L837.469,2669.41L770.747,2717.89L796.233,2639.45L729.511,2590.98L811.983,2590.98L837.469,2512.54Z" style="fill:rgb(254,251,228);"/>
+            </g>
+            <g transform="matrix(0.744238,0,0,0.744238,14.2604,810.697)">
+                <g transform="matrix(156.207,0,0,156.207,1529.95,2547.19)">
+                </g>
+                <text x="549.157px" y="2547.19px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:156.207px;fill:rgb(219,61,43);">Lorem Ipsum</text>
+            </g>
+            <g transform="matrix(0.744238,0,0,0.744238,12.9193,549.586)">
+                <g transform="matrix(156.207,0,0,156.207,1530.18,2547.19)">
+                </g>
+                <text x="549.157px" y="2547.19px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:156.207px;fill:rgb(219,61,43);">Holy Diocese</text>
+            </g>
+            <g transform="matrix(0.744238,0,0,0.744238,321.019,692.403)">
+                <g transform="matrix(156.207,0,0,156.207,696.592,2547.19)">
+                </g>
+                <text x="549.157px" y="2547.19px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:156.207px;fill:rgb(219,61,43);">of</text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -46,6 +46,9 @@ import { useState } from "react";
 import textInputExample from "./assets/textInputExample.png";
 import hireScoreLogoGrey from './assets/hireScoreLogo-grey.svg';
 import hirescoreLogoBlack from './assets/hireScoreLogo-black.svg';
+import sampleLogoSquare from './assets/sampleLogo_square.svg';
+import sampleLogoTall from './assets/sampleLogo_tall.svg';
+import sampleLogoWide from './assets/sampleLogo_wide.svg';
 import {
   IconTrash,
   IconAffiliate,
@@ -120,6 +123,7 @@ const sections = [
   },
   { label: "Find Talent" },
   { label: "HireScore Branding" },
+  { label: "Logo Library" },
 ];
 
 // #endregion
@@ -3324,6 +3328,43 @@ function HireScoreBrandingSection({ setActive }) {
 
 // #endregion
 
+// #region Logo Library
+
+function LogoLibrarySection() {
+  return (
+    <Stack gap="lg">
+      <WIPBanner />
+      <Text>This page contains sample logos in various orientations. Use these to test out document and webpage layouts that will contain client logos.</Text>
+      <SimpleGrid cols={3} spacing="md">
+        {[
+          { src: sampleLogoSquare, caption: "Sample logo: square", filename: "sampleLogo_square.svg" },
+          { src: sampleLogoTall, caption: "Sample logo: vertical", filename: "sampleLogo_tall.svg" },
+          { src: sampleLogoWide, caption: "Sample logo: horizontal", filename: "sampleLogo_wide.svg" },
+        ].map(({ src, caption, filename }) => (
+          <Stack key={caption} gap="xs" align="center">
+            <Box
+              style={{
+                borderRadius: 6,
+                border: "1px solid var(--mantine-color-gray-3)",
+                padding: 16,
+                width: "100%",
+              }}
+            >
+              <Image src={src} fit="contain" />
+            </Box>
+            <Text size="sm" c="dimmed">{caption}</Text>
+            <a href={src} download={filename}>
+              <Button variant="light" size="xs">Download</Button>
+            </a>
+          </Stack>
+        ))}
+      </SimpleGrid>
+    </Stack>
+  );
+}
+
+// #endregion
+
 // #region App
 function App() {
   const [active, setActive] = useState("Colors");
@@ -3413,6 +3454,7 @@ function App() {
             {active === "OA Report" && <OAReportSection />}
             {active === "Find Talent" && <FindTalentSection />}
             {active === "HireScore Branding" && <HireScoreBrandingSection setActive={setActive} />}
+            {active === "Logo Library" && <LogoLibrarySection />}
           </Stack>
         </Container>
       </AppShell.Main>
